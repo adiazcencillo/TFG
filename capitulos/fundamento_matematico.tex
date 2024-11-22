@@ -97,6 +97,20 @@ El morfismo identidad $1_{A}$ de un objeto $A$ es el único morfismo cumpliendo 
     1_{A} = 1_{A} \circ i_{A} = 1_{A}
 \end{equation}
 
+Una forma importante de construir categorías a partir de una categoría dada se recoge en la siguiente definición.
+
+\begin{definicion}
+    (Categoría opuesta): Toda categoría $\mathscr{A}$ tiene una categoría \textit{opuesta} $\mathscr{A}^{op}$ definida:
+    \begin{enumerate}
+        \item $|\mathscr{A}^{op}| = |\mathscr{A}|$,
+        \item $\mathscr{A}^{op}(B,A) = \mathscr{A}(A,B) \, \, \, , \forall A,B \in \mathscr{A}^{op}$,
+        \item En cuanto a la composición, si tenemos los morfismos $A \xlongrightarrow{f} B \xlongrightarrow{g} C $ en $\mathscr{A}^{op}$, entonces en $\mathscr{A}$ nos encontramos  $A \xlongleftarrow{f} B \xlongleftarrow{g} C $. En $\mathscr{A}^{op}$ encontramos la composición $g \circ f: A \longrightarrow C$ y en $\mathscr{A}$ tenemos $f \circ g: A \longleftarrow C$
+    \end{enumerate}
+    Por tanto, los morfismos $f: A \longrightarrow B$ en $\mathscr{A}$ se corresponden con los morfismos $f: B \longrightarrow A$ en $\mathscr{A}^{op}$.
+\end{definicion}
+
+Una propiedad importante en teoría de categorías es el \textit{principio de dualidad}, que relaciona las propiedades que se dan en una categoría $\mathscr{A}$ y su opuesta $\mathscr{A}^{op}$.
+
 \section{Ejemplos}
 Veamos algunos ejemplos:
 
@@ -229,6 +243,7 @@ Veamos algunos ejemplos de functores:
 
 \begin{ejemplo}
     El ``forgetful functor'' (o functor olvidadizo, haciendo una traducción literal) $U: \textbf{Ab} \longrightarrow \textbf{Set} $ de la categoría de grupos abelianos a la categoría de conjuntos, lleva un grupo $(G,+)$ en su conjunto asociado $G$ y un homomorfismo de grupos $f$ en una función entre los conjuntos asociados $f$. Debe su nombre a que dicho functor ``olvida'' la estructura subyacente de grupo.
+    \label{ej:forgetful}
 \end{ejemplo}
 
 \begin{ejemplo}
@@ -253,7 +268,7 @@ Veamos algunos ejemplos de functores:
 \begin{ejemplo}
     Otro functor importante en teoría de categorías es el functor representable. Dada una categoría $\mathscr{C}$ y un objeto $C \in \mathscr{C}$, se define el functor \begin{equation}
         \mathscr{C}(C,-): \mathscr{C} \longrightarrow Set
-    \end{equation} que asocia a cada objeto de la clase $\mathscr{C}$ un objeto de la clase \textbf{Set}: el conjunto de todos los morfismos entre $C$ y dicho objeto. \\
+    \end{equation} que asocia a cada objeto $A \in \mathscr{C}$ el objeto $\mathscr{C}(C,A)$ de la clase \textbf{Set}. \\
     Si $f: A \longrightarrow B$ es un morfismo en $\mathscr{C}$, la imagen por el functor representable será una función entre conjuntos de la siguiente forma: \begin{equation}
         \mathscr{C}(C,-)(f): \mathscr{C}(C,A) \longrightarrow \mathscr{C}(C,B)
     \end{equation} de forma que para cada $g \in \mathscr{C}(C,A)$ obtenemos un morfismo $f \circ g: C \longrightarrow B$, esto es, $f \circ g \in \mathscr{C}(C,B).$
@@ -285,17 +300,22 @@ Definimos ahora un concepto central en este trabajo.
     \end{enumerate}  
 \end{observacion}
 
-Para evitar confusiones, enfatizaremos que estamos trabajando con un functor como el definido en \ref{functor} llamándolo functor \emph{covariante}.
+Para evitar confusiones, enfatizaremos que estamos trabajando con un functor como el definido en \ref{functor} llamándolo functor \emph{covariante}. Un functor contravariante $F: \mathscr{A} \longrightarrow \mathscr{B}$ es un functor covariante entre las categorías $\mathscr{A}^{op}$ y $\mathscr{B}$.
 
 \subsubsection{Ejemplos}
 
 Veamos algunos ejemplos de functores contravariantes.
 
 \begin{ejemplo}
-    Análogo al functor representable definido en \ref{ej:func_repre}, encontramos el siguiente 
-\end{ejemplo}
+    Análogo al functor representable definido en \ref{ej:func_repre}, encontramos el siguiente functor contravariante:
 
-\subsection{Functores full y faithful}
+    Dada una categoría $\mathscr{C}$ y un objeto $C \in \mathscr{C}$, se define el functor \begin{equation}
+        \mathscr{C}(-,C): \mathscr{C} \longrightarrow Set
+    \end{equation} que asocia a cada objeto $A \in \mathscr{C}$, el objeto $\mathscr{C}(A,C)$ de la clase \textbf{Set}. \\
+    Si $f: A \longrightarrow B$ es un morfismo en $\mathscr{C}$, la imagen por el functor representable será una función entre conjuntos de la siguiente forma: \begin{equation}
+        \mathscr{C}(-,C)(f): \mathscr{C}(B,C) \longrightarrow \mathscr{C}(A,C)
+    \end{equation} de forma que para cada $g \in \mathscr{C}(B,C)$ obtenemos un morfismo $g \circ f: A \longrightarrow B$, esto es, $g \circ f \in \mathscr{C}(A,C).$    
+\end{ejemplo}
 
 \section{Transformaciones naturales}
 \subsection{Definición y propiedades}
@@ -388,21 +408,183 @@ La definición hecha en \ref{t_natural} corresponde a transformaciones naturales
         G(f) \circ \alpha_{A'} = \alpha_{A} \circ F(f)
     \end{equation}
     (ver diagrama \ref{diag:trans_natural_contra})
-    \label{t_natural_contra}    
+    \label{t_natural}    
 \end{definicion}
 
 \section{Subcategorías}
 
+\begin{definicion}
+    Sea el functor $F: \mathscr{A} \longrightarrow \mathscr{B}$ y para cada par de objetos $A,A' \in \mathscr{A}$ la función \begin{equation}
+        \mathscr{A}(A,A') \longrightarrow \mathscr{B}(FA,FA'), \, \, \, f \mapsto Ff
+    \end{equation}
+    \begin{enumerate}
+        \item Decimos que el functor F es \textit{faithful} si la función definida arriba es inyectiva para cada $A,A'$.
+        \item Decimos que el functor F es \textit{full} si la función definida arriba es sobreyectiva para cada $A,A'$.
+        \item Decimos que el functor F es \textit{full} y \textit{faithful} si la función definida arriba es biyectiva para cada $A,A'$.
+        \item El functor F es un isomorfismo de categorías cuando es \textit{full} y \textit{faithful} e induce una biyección $|\mathscr{A}| \longrightarrow |\mathscr{B}|$ entre las clases de objetos.
+    \end{enumerate}
+\end{definicion}
+
+Damos ahora el concepto de subcategoría:
+
+\begin{definicion}
+    Una subcategoría $\mathscr{B}$ de una categoría $\mathscr{A}$ consiste en:
+    \begin{enumerate}
+        \item Una subclase $|\mathscr{B}| \subseteq |\mathscr{A}|$ de la clase de objetos,
+        \item Para cada par de objetos $A,A' \in \mathscr{B}$, un subconjunto $\mathscr{B}(A,A') \subseteq \mathscr{A}(A,A')$ de forma que 
+        \begin{enumerate}
+            \item $f \in \mathscr{B}(A,A')$ y $g \in \mathscr{B}(A',A'') \implies g \circ f \in \mathscr{B}(A,A''),$ 
+            \item $\forall A \in \mathscr{B}, 1_{A} \in \mathscr{B}(A,A).$
+        \end{enumerate}
+
+    \end{enumerate}
+    De forma evidente, una subcategoría es una categoría. Además, una subcategoría $\mathscr{B}$ de $\mathscr{A}$ induce un functor inclusion $\mathscr{B} \longrightarrow \mathscr{A}$ que es \textit{faithful}.
+\end{definicion}
+
+Veamos un ejemplo interesante:
+\begin{ejemplo}
+    Recordemos el \textit{forgetful functor} definido en \ref{ej:forgetful} que asignaba a cada grupo $G \in \textbf{Grp}$ su estructura subyacente de conjunto en la categoría $\textbf{Set}$. Es evidente que se cumple $|Grp| \subseteq |Set|$. Además, para cada dos grupos $G, H \in \textbf{Grp}$, el conjunto de homomorfismos de grupos entre ellos, $\textbf{Grp}(G,H)$ está contenido en el conjunto $\textbf{Set}(G,H)$ de funciones entre los conjuntos subyacentes. Por tanto \textbf{Grp} es una subcategoría de $\textbf{Set}$, y el \textit{forgetful functor} define la inclusión entre ambas categorías (esto es, el \textit{forgetful functor} es \textit{faithful}).
+\end{ejemplo}
+
 \section{Límites y colímites}
+
+Vamos a empezar viendo algunos ejemplos comunes del concepto de límite, con el objetivo de tener una visión más general una vez enunciemos la definición.
+
+\begin{definicion}
+    (Producto): Sea $\mathscr{A}$ una categoría y $X,Y \in \mathscr{A}$ dos objetos. Un producto de $X,Y$ consiste en un objeto $P$ y morfismos:
+
+    \begin{center}
+        \begin{tikzcd}[row sep=1cm, column sep=1cm]
+            &  P \arrow{ld}[swap]{\pi_{1}} \arrow{rd}{\pi_{2}} & \\
+            X & & Y
+        \end{tikzcd}
+    \end{center}
+    de forma que para cada objeto $A$ y morfismos
+
+
+    \begin{figure}[htpb]
+        \centering
+        \begin{tikzcd}[row sep=1cm, column sep=1cm]
+            &  A \arrow{ld}[swap]{\f_{X}} \arrow{rd}{\f_{Y}} & \\
+            X & & Y
+        \end{tikzcd}
+        \caption{Producto}
+        \label{diag:producto}
+    \end{figure}
+        
+    en $\mathscr{A}$, existe un \textbf{único} morfismo $\bar{f}: A \longrightarrow P$ tal que 
+
+    \begin{figure}[htpb]
+        \centering
+        \begin{tikzcd}[row sep=1cm, column sep=1cm]
+            & A \arrow[dashed]{d}[description]{\exists! \ \bar{f}} \arrow{ld}[swap]{f_1} \arrow{rd}{f_2} & \\
+            X & P \arrow{l}[swap]{\pi_{1}} \arrow{r}{\pi_{2}} & Y
+        \end{tikzcd}
+        \caption{Propiedad universal del producto}
+        \label{diag:universal-producto}
+    \end{figure}
+    conmuta. 
+    
+    Esto se conoce como propiedad universal del producto. El producto es el objeto (y morfismos) ``más general'' que cumple las condiciones de las proyecciones $\pi_{1}$ y $\pi_{2}$.
+    
+\end{definicion}
+
+\begin{observacion}
+    \begin{enumerate}
+        \item  El producto no siempre existe. Por ejemplo, consideremos la categoría discreta $\mathscr{A}$ formada únicamente por los objetos $X$ e $Y$. En esta categoría no puede existir el producto de $X$ e $Y$.
+        \item De existir el producto, este es único salvo isomorfismo. Esto se desprende inmediatamente de la propiedad universal previamente mencionada.
+    \end{enumerate}
+\end{observacion}
+
+Veamos algunos ejemplos de productos en diferentes categorías:
+
+\begin{ejemplo}
+    En la categoría \textbf{Set}, el producto de dos conjuntos $X,Y$ es el producto cartesiano usual $X \times Y$, equipado con las proyecciones usuales $\pi_{1}$ y $\pi_{2}$. Sea un conjunto $A$ y morfismos $f_1$ y $f_2$ como en \ref{diag:producto}. Definimos $\bar{f}: A \longrightarrow X \times Y$ como $\bar{f}(a) = (f_1(a),f_2(a))$. Se cumple de manera evidente que $\pi_i \circ \bar{f} = f_i$ con $i=1,2$; luego el diagrama \ref{diag:universal-producto} conmuta. Hay que probar que $\bar{f}$ es la única función entre $A$ y $X \times Y$ que cumple esta propiedad. Supongamos $\hat{f}: A \longrightarrow X \times Y$ cumpliendo $\pi_i \circ \hat{f} = f_i$ con $i=1,2$. Tomemos $a \in A$ y sin pérdida de generalidad escribimos $\hat{f}(a) = (x,y)$. Como $\hat{f}$ hace conmutar a \ref{diag:universal-producto}, se cumple que $f_1(a) = p_1(\hat{f}(a)) = p_1((x,y)) = x$ , $f_2(a) = p_2(\hat{f}(a)) = p_2((x,y)) = y$. Luego $\hat{f}(a) = (x,y) = (f_1(a),f_2(a)) = \bar{f}(a)$, obteniendo la unicidad buscada.
+\end{ejemplo}
+
+\begin{ejemplo}
+    En la categoría \textbf{Grp} encontramos un producto en el \textit{producto directo de grupos}. Dados dos grupos $G$ y $H$, se define su producto directo $G \times H$ como: 
+    \begin{enumerate}
+        \item El conjunto subyacente es el producto cartesiano $G\times H$, esto es, $(g,h) \in G \times H$ con $g \in G$ y $h \in H$.
+        \item La operación en $G \times H$ se define como \begin{equation}
+            (g_1,h_1) \cdot (g_2,h_2) = (g_1*g_2, \ h_1\circ h_2)
+        \end{equation}
+    \end{enumerate}
+\end{ejemplo}
+
+Podemos generalizar el concepto de producto en una categoría $\mathscr{A}$ de la siguiente forma.
+
+\begin{definicion}
+    Sea $\mathscr{A}$ una categoría e $I$ un conjunto y una familia de objetos $(X_i)_{i\in I}$. El producto de $(X_i)_{i\in I}$ consiste en un objeto $P$ y una familia de morfismos \begin{equation}
+        (P \xlongrightarrow{\pi_i} X_i)_{i \in I}
+    \end{equation}
+    de forma que para cada objeto $A$ y morfismos \begin{equation}
+        (A \xlongrightarrow{f_i} X_i)_{i \in I}
+    \end{equation}
+    existe un único morfismo $\bar{f}: A \longrightarrow P$ cumpliendo $f_i = \pi_i \circ \bar{f}$ para $i=1,2$.
+\end{definicion}
+
+Veamos otro ejemplo de límite que nos será útil más adelante. 
+
+\begin{definicion}
+    (Equalizer): Sea $\mathscr{A}$ una categoría y \begin{tikzcd}
+        X \arrow[r, shift left]{s} \arrow[r, shift right]{t}
+        & Y
+    \end{tikzcd} objetos y morfismos en $\mathscr{A}$. Se define el equalizer de $s$ y $t$ como un objeto $E$ y un morfismo $E \xlongrightarrow{i} X$ de forma que \begin{tikzcd}
+        E \arrow[r]
+        & X \arrow[r, shift left]
+        \arrow[r, shift right]
+        & Y
+    \end{tikzcd}  cumple $s \circ i = t \circ i$ y para cualquier otro objeto $A$ y morfismo $A \xlongrightarrow{j} X$ cumpliendo la propiedad anterior, se tiene un único morfismo $\hat{f}: A \longrightarrow E$ de forma que
+
+    \begin{center}
+        \begin{tikzcd}[row sep=1cm, column sep=1cm]
+            A \arrow{rd}{j} \arrow[dotted]{d}[swap]{\hat{f}}\\
+            E \arrow{r}[swap]{i} & X
+        \end{tikzcd}
+    \end{center}
+    conmuta.
+\end{definicion}
+
+\begin{ejemplo}
+    En la categoría \textbf{Set}, dados los conjuntos y funciones entre ellos \begin{tikzcd}
+        X \arrow[r, shift left]{s} \arrow[r, shift right]{t}
+        & Y
+    \end{tikzcd}, definimos el equalizer como el conjunto \begin{equation}
+        E = \{x \in X \ | \ s(x) = t(x)\}
+    \end{equation} y la inclusión $i: E \longrightarrow X$. 
+\end{ejemplo}
+
+\begin{ejemplo}
+    En la categoría \textbf{Grp} consideremos un par de grupos $G$ y $H$ junto con homomorfismos \begin{tikzcd}
+        G \arrow[r, shift left]{s} \arrow[r, shift right]{t}
+        & H
+    \end{tikzcd} donde $\epsilon: G \longrightarrow H$ es el homomorfismo trivial y $\theta: G \longrightarrow H$ es un homomorfismo cualquiera. El núcleo de $\theta$ será el equalizer del anterior diagrama, esto es, un objeto $ker \theta$ junto con un homomorfismo \begin{tikzcd}
+         ker \ \theta \arrow[hook]{r}{i} & G
+    \end{tikzcd} cumpliendo $\theta \circ i = \epsilon \circ i \implies \theta(g) = 0 \ \forall g \in ker \ \theta $.
+\end{ejemplo}
+
+Hemos visto dos construcciones diferentes: productos y equalizers. La filosofía detrás de estas construcciones es la misma: se parte de unos objetos con (posiblemente) morfismos entre sí. Se pretende construir un objeto junto con morfismos a los objetos originales de forma que se cumpla una propiedad universal.  
+
+En el caso de los productos, nuestro punto de partida son dos objetos 
+
+\begin{tikzpicture}
+    \node[draw, rectangle, minimum width=2cm, minimum height=0.5cm] (boxT) {};
+    \node[fill=black, circle, inner sep=1pt] at (-0.5, 0) {}; % Punto izquierdo
+    \node[fill=black, circle, inner sep=1pt] at (0.5, 0) {}; % Punto derecho
+\end{tikzpicture}      
+
+\begin{definicion}
+    
+\end{definicion}
 
 \section{Categorías abelianas}
 
-\subsection{Conceptos previas}
+\subsection{Conceptos previos}
 
 \subsection{Definicion y propiedades}
 
 \section{Adjunciones}
-holaexsjn
 
 \section{Texto básico}
 
