@@ -1,0 +1,35 @@
+# Archivos de log y compilación
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+
+# Archivos relacionados con bibliografía
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+# Archivos específicos de ciertos compiladores
+*.synctex.gz
+*.dvi
+*.ps
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# Archivos relacionados con editores de LaTeX (como TeXShop, Kile, etc.)
+*.pdfsync
+*.synctex(busy)
+*.pdfwrite
+
+# Archivos temporales del sistema
+._*
+.DS_Store
+Thumbs.db
+
+# Archivos de salida final (opcional, si no quieres subir PDFs generados)
+*.pdf
