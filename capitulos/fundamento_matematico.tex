@@ -450,51 +450,59 @@ Veamos un ejemplo interesante:
 
 Vamos a empezar viendo algunos ejemplos comunes del concepto de límite, con el objetivo de tener una visión más general una vez enunciemos la definición.
 
+\subsection{Producto}
+
 \begin{definicion}
-    (Producto): Sea $\mathscr{A}$ una categoría y $X,Y \in \mathscr{A}$ dos objetos. Un producto de $X,Y$ consiste en un objeto $P$ y morfismos:
+    (Producto): Sea $\mathscr{C}$ una categoría y $A,B \in \mathscr{C}$ dos objetos. Un producto de $A,B$ consiste en un objeto $P$ y morfismos:
 
     \begin{center}
         \begin{tikzcd}[row sep=1cm, column sep=1cm]
-            &  P \arrow{ld}[swap]{\pi_{1}} \arrow{rd}{\pi_{2}} & \\
-            X & & Y
+            &  P \arrow{ld}[swap]{p_{A}} \arrow{rd}{p_{B}} & \\
+            A & & B
         \end{tikzcd}
     \end{center}
-    de forma que para cada objeto $A$ y morfismos
+    de forma que para cada objeto $Q$ y morfismos
 
 
     \begin{figure}[htpb]
         \centering
         \begin{tikzcd}[row sep=1cm, column sep=1cm]
-            &  A \arrow{ld}[swap]{\f_{X}} \arrow{rd}{\f_{Y}} & \\
-            X & & Y
+            &  Q \arrow{ld}[swap]{q_{A}} \arrow{rd}{q_{B}} & \\
+            A & & B
         \end{tikzcd}
-        \caption{Producto}
         \label{diag:producto}
     \end{figure}
         
-    en $\mathscr{A}$, existe un \textbf{único} morfismo $\bar{f}: A \longrightarrow P$ tal que 
+    en $\mathscr{C}$, existe un \textbf{único} morfismo $\bar{f}: Q \longrightarrow P$ tal que 
 
     \begin{figure}[htpb]
         \centering
         \begin{tikzcd}[row sep=1cm, column sep=1cm]
-            & A \arrow[dashed]{d}[description]{\exists! \ \bar{f}} \arrow{ld}[swap]{f_1} \arrow{rd}{f_2} & \\
-            X & P \arrow{l}[swap]{\pi_{1}} \arrow{r}{\pi_{2}} & Y
+            & Q \arrow[dashed]{d}[description]{\exists! \ \bar{f}} \arrow{ld}[swap]{q_A} \arrow{rd}{q_B} & \\
+            A & P \arrow{l}[swap]{p_{A}} \arrow{r}{p_{B}} & B
         \end{tikzcd}
         \caption{Propiedad universal del producto}
         \label{diag:universal-producto}
     \end{figure}
     conmuta. 
     
-    Esto se conoce como propiedad universal del producto. El producto es el objeto (y morfismos) ``más general'' que cumple las condiciones de las proyecciones $\pi_{1}$ y $\pi_{2}$.
+    Esto se conoce como propiedad universal del producto. El producto es el objeto (y morfismos) ``más general'' que cumple las condiciones de las proyecciones $p_{A}$ y $p_{B}$.
+    Lo notaremos como $(P, p_{A}, p_{B})$
     
 \end{definicion}
 
-\begin{observacion}
-    \begin{enumerate}
-        \item  El producto no siempre existe. Por ejemplo, consideremos la categoría discreta $\mathscr{A}$ formada únicamente por los objetos $X$ e $Y$. En esta categoría no puede existir el producto de $X$ e $Y$.
-        \item De existir el producto, este es único salvo isomorfismo. Esto se desprende inmediatamente de la propiedad universal previamente mencionada.
-    \end{enumerate}
-\end{observacion}
+\begin{proposicion}
+    En una categoría \mathscr{C} el producto de dos objetos $A,B \in \mathscr{C}$ (si existe) es único salvo isomorfismo.
+    $(P, \pi_{1}, \pi_{2})$
+\end{proposicion}
+\textit{Demostración.} Notar que el producto no siempre existe.  Por ejemplo, consideremos la categoría discreta 
+$\mathscr{A}$ formada únicamente por los objetos $A$ y $B$. En esta categoría no puede existir el producto de $A$ y $B$.
+
+Veamos ahora la unicidad salvo isomorfismo. Consideremos en la categoría \mathscr{C} dos productos $(P, p_A, p_B)$ y $(Q, q_A, q_B)$ de los
+objetos $A,B \in \mathscr{C}$. Como $(P, p_A, p_B)$ es un prodcuto, existe un único morfismo $\bar{f}: Q \longrightarrow P $ cumpliendo que 
+$q_A = p_A \circ \bar{f}$ y  $q_B = p_B \circ \bar{f}$. De forma análoga, como $(Q, q_A, q_B)$ es un producto, existe un único morfismo 
+$\bar{g}: P \longrightarrow Q $ cumpliendo $p_A = q_A \circ \bar{g}$ y  $p_B = q_B \circ \bar{g}$.
+
 
 Veamos algunos ejemplos de productos en diferentes categorías:
 
