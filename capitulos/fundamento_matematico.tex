@@ -1,59 +1,17 @@
 % !TeX root = ../tfg.tex
 % !TeX encoding = utf8
 
-\chapter{Categorías}\label{ch:categorias}
+\chapter{Teoría de Categorías}\label{ch:categorias}
 
 \section{Introducción}
-Este documento es una plantilla para la elaboración de un trabajo fin de Grado siguiendo los \href{https://grados.ugr.es/matematicas/pages/infoacademica/tfg/requisitosTFG}{requisitos} de la comisión de Grado en Matemáticas de la Universidad de Granada que, a fecha de junio de 2023, son las siguientes:
 
-\begin{itemize}
-  \item La  memoria  debe  realizarse  con  un  procesador  de  texto  científico,  preferiblemente (La)TeX.
-  \item La portada  debe contener  el  logo  de  la UGR,  incluir  el  título del TFG, el nombre del estudiante y especificar el grado, la facultad y el curso actual.
-  \item La contraportada contendrá además el nombre del tutor o tutores.
-  \item La memoria debe necesariamente incluir:
-    \begin{itemize}
-      \item Declaración explícita firmada en la que se asume la originalidad del trabajo, entendida en el sentido de que no ha utilizado fuentes sin citarlas debidamente. Esta declaración se puede descargar en la web del Grado.
-      \item un índice detallado de capítulos y secciones,
-      \item un resumen amplio en inglés del trabajo realizado (se recomienda entre 800 y 1500 palabras),
-      \item una introducción en la que se describan claramente los objetivos previstos inicialmente en la propuesta de TFG, indicando si han sido o no alcanzados, los antecedentes importantes para el desarrollo, los resultados obtenidos, en su caso y las principales fuentes consultadas,
-      \item una bibliografía final que incluya todas las referencias utilizadas.
-    \end{itemize}
-  \item Se recomienda que la extensión de la memoria sea de unas 50 páginas, sin incluir posibles apéndices.
-\end{itemize}
-
-Para generar el pdf a partir de la plantilla basta compilar el fichero \texttt{tfg.tex}. Es conveniente leer los comentarios contenidos en dicho fichero pues ayudarán a entender mejor como funciona la plantilla. 
-
-La estructura de la plantilla es la siguiente\footnote{Los nombres de las carpetas no se han acentuado para evitar problemas en sistemas con Windows}: 
-\begin{itemize}
-  \item Carpeta \textbf{preliminares}: contiene los siguientes archivos
-    \begin{description}
-      \item[\texttt{dedicatoria.tex}] Para la dedicatoria del trabajo (opcional)
-      \item[\texttt{agradecimientos.tex}] Para los agradecimientos del trabajo (opcional)
-      \item[\texttt{introduccion.tex}] Para la introducción (obligatorio)
-      \item[\texttt{summary.tex}] Para el resumen en inglés (obligatorio)
-      \item[\texttt{tablacontenidos.tex}] Genera de forma automática la tabla de contenidos, el índice de figuras y el índice de tablas. Si bien la tabla de contenidos es conveniente incluirla, el índice de figuras y tablas es opcional. Por defecto está desactivado. Para mostrar dichos índices hay que editar este fichero y quitar el comentario a \verb+\listoffigures+ o \verb+\listoftables+ según queramos uno de los índices o los dos. En este archivo también es posible habilitar la inclusión de un índice de listados de código (si estos han sido incluidos con el paquete \texttt{listings})
-  \end{description}
-  El resto de archivos de dicha carpeta no es necesario editarlos pues su contenido se generará automáticamente a partir de los metadatos que agreguemos en \texttt{tfg.tex}
-
-  \item Carpeta \textbf{capitulos}: contiene los archivos de los capítulos del TFG. Añadir tantos archivos como sean necesarios. Este capítulo es \texttt{capitulo01.tex}.
-
-  \item Carpeta \textbf{apendices}: Para los apéndices (opcional)
-  \item Carpeta \textbf{img}: Para incluir los ficheros de imagen que se usarán en el documento.
-    
-  \item Fichero \texttt{library.bib}: Para incluir las referencias bibliográficas en formato \texttt{bibtex}. Es útil la herramienta \href{https://www.doi2bib.org/}{doi2bib} para generar de forma automática el código bibtex de una referencia a partir de su \textsc{doi}  así como la base de datos bibliográfica \href{https://mathscinet.ams.org}{MathSciNet}. Para que una referencia aparezca en el pdf no basta con incluirla en el fichero \texttt{library.bib}, es necesario además \emph{citarla} en el documento usando el comando \verb+\cite+. Si queremos mostrar todos las referencias incluidas en el fichero \texttt{library.bib} podemos usar \verb+\cite{*}+ aunque esta opción no es la más adecuada. Se aconseja que los elementos de la bibliografía estén citados al menos una vez en el documento (y de esa forma aparecerán de forma automática en la lista de referencias).
-
-  \item Fichero \texttt{glosario.tex}: Para incluir un glosario en el trabajo (opcional). Si no queremos incluir un glosario deberemos borrar el comando \verb+\input{glosario.tex}+ del fichero \texttt{tfg.tex} y posteriormente borrar el fichero \texttt{glosario.tex}
-
-   \item Fichero \texttt{tfg.tex}: El documento maestro del TFG que hay que compilar con \LaTeX\ para obtener el pdf. En dicho documento hay que cambiar la \emph{información del título del \textsc{tfg} y el autor así como los tutores}.
-\end{itemize}
-
-\section{Definición y propiedades}
+\section{Categorías y functores}
 
 \begin{definicion}\label{def_categoria}
     Una categoría $\mathscr{C}$ consiste en:
     \begin{enumerate}
         \item Una clase $|\mathscr{C}|$ cuyos elementos se llamarán ``objetos de la categoría'';
-        \item Para cada par $A,B$ de objetos, un conjunto $\mathscr{C}(A,B)$, conocido como homset, cuyos elementos llamaremos ``morfismos'' ó ``flechas'' desde $A$ hasta $B$;
+        \item Para cada par $A,B$ de objetos, un conjunto $\mathscr{C}(A,B)$, conocido como \textit{homset}, cuyos elementos llamaremos ``morfismos'' ó ``flechas'' desde $A$ hasta $B$;
         \item Para cada $A,B,C \in |\mathscr{C}|$, se define una ley de composición:
             \begin{equation}
                 \mathscr{C}(A,B) \times \mathscr{C}(B,C) \longrightarrow \mathscr{C}(A,C)
@@ -90,8 +48,8 @@ En una categoría encontramos los siguientes axiomas o propiedades:
 \end{figure}
 
 Un morfismo $f \in \mathscr{C}(A,B)$ normalmente se representará mediante la notación con flecha $f: A \longrightarrow B$, donde $A$ se conoce como ``dominio'' y $B$ como ``codominio''.
-En la situación del diagrama \ref{diag:diagrama-basico}, diremos que dicho diagrama es ``conmutativo'' si se da la igualdad $gf = kh$. El concepto de ``conmutatividad'' se mantiene para diagramas de dimensión aritraria. \\
-El morfismo identidad $1_{A}$ de un objeto $A$ es el único morfismo cumpliendo el rol de identidad para la composición. Esto es, si $i_{A} \in \mathscr{C}(A,A)$ cumple dicha propiedad, entonces:
+En la situación del diagrama \ref{diag:diagrama-basico}, diremos que dicho diagrama es ``conmutativo'' si se da la igualdad $g \circ f = k \circ h$. El concepto de ``conmutatividad'' se mantiene para diagramas de dimensión aritraria. \\
+El morfismo identidad $1_{A}$ de un objeto $A$ es el único morfismo cumpliendo el rol de identidad para la composición de morfismos. Esto es, si $i_{A} \in \mathscr{C}(A,A)$ cumple dicha propiedad, entonces:
 
 \begin{equation}
     1_{A} = 1_{A} \circ i_{A} = 1_{A}
@@ -99,19 +57,18 @@ El morfismo identidad $1_{A}$ de un objeto $A$ es el único morfismo cumpliendo 
 
 Una forma importante de construir categorías a partir de una categoría dada se recoge en la siguiente definición.
 
-\begin{definicion}
-    (Categoría opuesta): Toda categoría $\mathscr{A}$ tiene una categoría \textit{opuesta} $\mathscr{A}^{op}$ definida:
+\begin{definicion} [Categoría opuesta]
+    Toda categoría $\mathscr{A}$ tiene una categoría \textit{opuesta} $\mathscr{A}^{op}$ definida:
     \begin{enumerate}
         \item $|\mathscr{A}^{op}| = |\mathscr{A}|$,
-        \item $\mathscr{A}^{op}(B,A) = \mathscr{A}(A,B) \, \, \, , \forall A,B \in \mathscr{A}^{op}$,
-        \item En cuanto a la composición, si tenemos los morfismos $A \xlongrightarrow{f} B \xlongrightarrow{g} C $ en $\mathscr{A}^{op}$, entonces en $\mathscr{A}$ nos encontramos  $A \xlongleftarrow{f} B \xlongleftarrow{g} C $. En $\mathscr{A}^{op}$ encontramos la composición $g \circ f: A \longrightarrow C$ y en $\mathscr{A}$ tenemos $f \circ g: A \longleftarrow C$
+        \item $\mathscr{A}^{op}(B,A) = \mathscr{A}(A,B) \, \, \, , \forall A,B \in |\mathscr{A}^{op}|$,
+        \item En cuanto a la ley de composición, si tenemos $f \in \mathscr{C}^{op}(A,B)$ y $g \in \mathscr{C}^{op}(B,C)$ esto se traduce en $f \in  \mathscr{C}(B,A)$ y $g \in \mathscr{C}(C,B)$. Como $\mathscr{C}$ es una categoría, podemos aplicar su ley de composición de forma que el morfismo $g \circ f \in \mathscr{C,A}$ está bien definido. Por la forma de construir $\mathscr{C}^{op}$, obtenemos $f \circ g \in \mathscr{C}^{op}(A,C)$, quedando bien definida la ley de composición para dichar categoría.
+        \item Dada la forma en que se han definido los \textit{homsets} en $\mathscr{C}^{op}$, es evidente que existe, para todo objeto $A \in \mathscr{C}^{op}$, su identidad.
     \end{enumerate}
-    Por tanto, los morfismos $f: A \longrightarrow B$ en $\mathscr{A}$ se corresponden con los morfismos $f: B \longrightarrow A$ en $\mathscr{A}^{op}$.
 \end{definicion}
 
 Una propiedad importante en teoría de categorías es el \textit{principio de dualidad}, que relaciona las propiedades que se dan en una categoría $\mathscr{A}$ y su opuesta $\mathscr{A}^{op}$.
 
-\section{Ejemplos}
 Veamos algunos ejemplos:
 
 \begin{ejemplo}
@@ -141,8 +98,9 @@ Veamos algunos ejemplos:
 \begin{ejemplo}
     Sea $I \in \mathscr{C}$ definimos la categoría de flechas sobre $I$, notada como $\mathscr{C}/I$, como sigue:
     \begin{itemize}
-        \item \textbf{Objetos: } las flechas cuyo codominio es $I$
-        \item \textbf{Morfismos: } los morfismos de un objeto $(f: A \longrightarrow I)$ a $(g: B \longrightarrow I)$ forman el conjunto de morfismos $h: A \longrightarrow B$ de $\mathscr{C}$ cumpliendo $g \circ h = f$ (ver diagrama \ref{diag:traingulo_hacia})
+        \item \textbf{Objetos: } las flechas cuyo codominio es $I$. Se notarán como $(A,f)$, donde $A$ es el dominio y $f$ el morfismo que llega a $I.$
+        
+        \item \textbf{Morfismos: } un morfismo entre dos objetos $(A,f)$ y $(B,g)$ es un morfismo $h: A \longrightarrow B$ en $\mathscr{C}(A,B)$ cumpliendo $h \circ g = f$. Esto es, el diagrama \ref{diag:traingulo_hacia} conmuta. La ley de composición y la identidad para un objeto en $\mathscr{C}/I$ son propiedades triviales a partir de las proporcionadas por $\mathscr{C}$.
     \end{itemize}
 \end{ejemplo}
 
@@ -158,10 +116,11 @@ Veamos algunos ejemplos:
 \end{figure}
 
 \begin{ejemplo}
-    En la misma línea que el anterior ejemplo, definimos la categoría de morfismos que parten del objeto $I$ de $\mathscr{C}$, notada como $I / \mathscr{C}$ como sigue: 
+    Siguiendo la misma idea que en el ejemplo anterior, definimos la categoría de morfismos que parten del objeto $I$ de $\mathscr{C}$, notada como $I / \mathscr{C}$ como sigue: 
     \begin{itemize}
-        \item \textbf{Objetos: } las flechas cuyo dominio es $I$
-        \item \textbf{Morfismos: } los morfismos de un objeto $(f: I \longrightarrow A)$ a $(g: I \longrightarrow B)$ forman el conjunto de morfismos $h: A \longrightarrow B$ de $\mathscr{C}$ cumpliendo $h \circ f = g$ (ver diagrama \ref{diag:traingulo_desde})
+        \item \textbf{Objetos: } las flechas cuyo dominio es $I$. Se notarán como $(f,A)$ donde $f$ es el morfismo que parte de $I$ y $A$ es el codominio.
+        
+        \item \textbf{Morfismos: } un morfismo entre dos objetos $(f,A)$ y $(g,B)$ es un morfismo $h: A \longrightarrow B$ en $\mathscr(C)(A,B)$ cumpliendo $h \circ f = g$. Esto es, el diagrama \ref{diag:traingulo_desde} conmuta.
     \end{itemize}
 \end{ejemplo}
 
@@ -195,10 +154,6 @@ Veamos algunos ejemplos:
     \label{diag:diagrama-flechas}
 \end{figure}
 
-%--------------------FUNCTORES-------------------------
-
-\section{Functores}
-\subsection{Definición y propiedades}
 Una vez definido el concepto de categoría y sus principales propiedades, veamos ahora el concepto que recoge las correspondencias entre categorías.
 
 \begin{definicion}
@@ -211,21 +166,49 @@ Una vez definido el concepto de categoría y sus principales propiedades, veamos
         la imagen de un morfismo $f \in \mathscr{A}(A,A')$ se nota como $F(f)$ o simplemente $Ff$.
     \end{enumerate}
     \label{functor}
-\end{definicion}
 
-\begin{observacion} Las siguientes propiedades aseguran que los functores respeten la estructura subyacente de las categorías donde se definene.
+ Los siguientes axiomas aseguran que los functores respeten la estructura subyacente de las categorías donde se definen.
   \begin{enumerate}
         \item para cada par de morfismos $f \in \mathscr{A}(A,A')$, $g \in          \mathscr{A}(A',A''): $ \begin{equation} F(g \circ f) = F(g) \circ F(f)   \end{equation}
 
         \item para cada $A \in \mathscr{A}$ \begin{equation}
             F(1_{A}) = 1_{FA}
         \end{equation}
-    \end{enumerate}  
+    \end{enumerate} 
+
+\end{definicion}
+
+\begin{observacion}
+    Se puede definir una ley de composición para functores de la siguiente forma. Sean functores $F: \mathscr{A} \longrightarrow \mathscr{B}$ y $G: \mathscr{B} \longrightarrow \mathscr{C}$ composables, se define el nuevo functor $G \circ F: \mathscr{A} \longrightarrow \mathscr{C}$:
+
+    \begin{enumerate}
+        \item Dado $A \in \mathscr{A}$, su imagen por el functor composición se define como $(G \circ F)(A) = G(F(A))$.
+        \item Dado $f \in \mathscr{C}(A,B)$, su imagen por el functor composición se define como $(G \circ F)(f) = G(F(f))$.
+        \item Sean $ f \in \mathscr{A}(A, B) $ y $ g \in \mathscr{B}(B, C) $. Entonces,
+        $$
+            (G \circ F)(g \circ f) = G(F(g \circ f)).
+        $$
+        Dado que $ F $ es un functor de $ \mathscr{A} $, respeta la composición de morfismos, por lo que
+        $$
+            G(F(g \circ f)) = G(F(g) \circ F(f)).
+        $$
+        Además, como $ G $ es un functor de $ \mathscr{B} $, también respeta la composición, lo que implica
+        $$
+            G(F(g) \circ F(f)) = G(F(g)) \circ G(F(f)).
+        $$
+        En conclusión,
+        $$
+            (G \circ F)(g \circ f) = G(F(g)) \circ G(F(f)).
+        $$
+        
+    \end{enumerate}
+
+    De esta forma hemos probado que se puede definir el functor composición de dos functores.
+
 \end{observacion}
 
 \begin{observacion}
-    Dados dos functores $F: \mathscr{A} \longrightarrow {B}$ y $G: \mathscr{B} \longrightarrow {C}$ se puede definir una composición sobre objetos que produce un nuevo functor $G \circ F: \mathscr{A} \longrightarrow \mathscr{C}$. Esta composición cumple:
-
+    Una vez probada la correcta definición de la composición de functores, encontramos las siguientes propiedades de dicha ley:
     \begin{enumerate}
         \item \textit{Asociatividad: } Dados los functores $F: \mathscr{A} \longrightarrow \mathscr{B}$, $G: \mathscr{B} \longrightarrow \mathscr{C}$ y $H: \mathscr{C} \longrightarrow \mathscr{D}$, se cumple: \begin{equation}
             H \circ (G \circ F) = (H \circ G) \circ F   
@@ -236,9 +219,8 @@ Una vez definido el concepto de categoría y sus principales propiedades, veamos
     \end{enumerate}
 \end{observacion}
 
-A primera vista puede parecer que las categorías como objetos y los functores como morfismos entre ellas cumplen todos los axiomas de las categorías.  Sin embargo, recordemos que los morfismos entre objetos deben formar un conjunto. Por tanto, para que las categorías y sus functores puedan formar una categoría, se debe cumplir que el objeto que contenga a todos los functores entre dos categorías sea un conjunto. Esto no sucede siempre, pero el motivo queda fuera del ámbito de este trabajo.
+A primera vista, podría parecer que las categorías, consideradas como objetos, y los functores, vistos como morfismos entre ellas, satisfacen todos los axiomas necesarios para formar una categoría. Sin embargo, es importante recordar que, para que una colección de morfismos entre dos objetos constituya una categoría, dichos morfismos deben formar un conjunto. En el caso de las categorías y los functores, esto implicaría que el conjunto de todos los functores entre dos categorías dadas debe ser, a su vez, un conjunto. No obstante, esta condición no siempre se cumple, ya que en muchos casos la colección de functores entre dos categorías puede ser demasiado grande para ser un conjunto. Las razones detrás de esto exceden el alcance de este trabajo.
 
-\subsection{Ejemplos}
 Veamos algunos ejemplos de functores:
 
 \begin{ejemplo}
@@ -266,21 +248,25 @@ Veamos algunos ejemplos de functores:
 \end{ejemplo}
 
 \begin{ejemplo}
-    Otro functor importante en teoría de categorías es el functor representable. Dada una categoría $\mathscr{C}$ y un objeto $C \in \mathscr{C}$, se define el functor \begin{equation}
-        \mathscr{C}(C,-): \mathscr{C} \longrightarrow Set
-    \end{equation} que asocia a cada objeto $A \in \mathscr{C}$ el objeto $\mathscr{C}(C,A)$ de la clase \textbf{Set}. \\
-    Si $f: A \longrightarrow B$ es un morfismo en $\mathscr{C}$, la imagen por el functor representable será una función entre conjuntos de la siguiente forma: \begin{equation}
-        \mathscr{C}(C,-)(f): \mathscr{C}(C,A) \longrightarrow \mathscr{C}(C,B)
-    \end{equation} de forma que para cada $g \in \mathscr{C}(C,A)$ obtenemos un morfismo $f \circ g: C \longrightarrow B$, esto es, $f \circ g \in \mathscr{C}(C,B).$
-    Este functor se conoce como representable ya que es ``representado'' por el objeto $C$, en el sentido de que si conocemos el objeto $C$ y como se relaciona con el resto de morfismos de su categoría, conocemos su functor representable. 
+    Otro functor fundamental en teoría de categorías es el \textbf{functor representable}. Dada una categoría $\mathscr{C}$ y un objeto $C \in \mathscr{C}$, se define el funtor
+    \begin{equation}
+        \mathscr{C}(C, -): \mathscr{C} \longrightarrow \mathbf{Set},
+    \end{equation}
+    que asigna a cada objeto $A \in \mathscr{C}$ el conjunto $\mathscr{C}(C, A)$ de morfismos de $C$ a $A$ en la categoría $\mathscr{C}$. 
+
+    Para cada par de objetos $A, B \in \mathscr{C}$ y un morfismo $f: A \longrightarrow B$, se define la acción del functor sobre $f$ como una función entre los conjuntos $\mathscr{C}(C, A)$ y $\mathscr{C}(C, B)$. Específicamente, si denotamos esta función como $\phi: \mathscr{C}(C, A) \longrightarrow \mathscr{C}(C, B)$, entonces, para cada $g \in \mathscr{C}(C, A)$, se define
+    $$
+    \mathscr{C}(C,-)(f) = \phi(g) = f \circ g \in \mathscr{C}(C, B).
+    $$
+
+    Este functor se denomina \textbf{representable} porque está completamente determinado por el objeto $C$. En otras palabras, el objeto $C$ ``representa'' al functor en el sentido de que, al conocer $C$ y cómo se relaciona con los demás objetos y morfismos de $\mathscr{C}$, podemos reconstruir completamente el functor $\mathscr{C}(C, -)$. 
     \label{ej:func_repre}
 \end{ejemplo}
 
-\subsection{Functores contravariantes}
 Definimos ahora un concepto central en este trabajo.
 
-\begin{definicion}
-    (Functor contravariante) Un functor contravariante $F$ de una categoría $\mathscr{A}$ a una categoría $\mathscr{B}$ consiste en:
+\begin{definicion} [Functor contravariante]
+    Un functor contravariante $F$ de una categoría $\mathscr{A}$ a una categoría $\mathscr{B}$ consiste en:
 
     \begin{enumerate}
         \item una función \begin{equation}|\mathscr{A}| \longrightarrow |\mathscr{B}| \end{equation} entre las clases de objetos de las categorías; la imagen de un objeto $A \in \mathscr{A}$ se nota $F(A)$ o simplemente $FA$.
@@ -288,9 +274,8 @@ Definimos ahora un concepto central en este trabajo.
         \item para cada $A, A' \in \mathscr{A}$, una función \begin{equation}\mathscr{A}(A,A') \longrightarrow \mathscr{B}(FA',FA) \end{equation}
         la imagen de un morfismo $f \in \mathscr{A}(A,A')$ se nota como $F(f)$ o simplemente $Ff$.
     \end{enumerate}
-\end{definicion}
 
-\begin{observacion} Las siguientes propiedades aseguran que los functores respeten la estructura subyacente de las categorías donde se definene.
+Las siguientes propiedades aseguran que los functores respeten la estructura subyacente de las categorías donde se definene.
   \begin{enumerate}
         \item para cada par de morfismos $f \in \mathscr{A}(A,A')$, $g \in          \mathscr{A}(A',A''): $ \begin{equation} F(g \circ f) = F(f) \circ F(g)   \end{equation}
 
@@ -298,7 +283,7 @@ Definimos ahora un concepto central en este trabajo.
             F(1_{A}) = 1_{FA}
         \end{equation}
     \end{enumerate}  
-\end{observacion}
+\end{definicion}
 
 Para evitar confusiones, enfatizaremos que estamos trabajando con un functor como el definido en \ref{functor} llamándolo functor \emph{covariante}. Un functor contravariante $F: \mathscr{A} \longrightarrow \mathscr{B}$ es un functor covariante entre las categorías $\mathscr{A}^{op}$ y $\mathscr{B}$.
 
@@ -312,14 +297,14 @@ Veamos algunos ejemplos de functores contravariantes.
     Dada una categoría $\mathscr{C}$ y un objeto $C \in \mathscr{C}$, se define el functor \begin{equation}
         \mathscr{C}(-,C): \mathscr{C} \longrightarrow Set
     \end{equation} que asocia a cada objeto $A \in \mathscr{C}$, el objeto $\mathscr{C}(A,C)$ de la clase \textbf{Set}. \\
-    Si $f: A \longrightarrow B$ es un morfismo en $\mathscr{C}$, la imagen por el functor representable será una función entre conjuntos de la siguiente forma: \begin{equation}
-        \mathscr{C}(-,C)(f): \mathscr{C}(B,C) \longrightarrow \mathscr{C}(A,C)
-    \end{equation} de forma que para cada $g \in \mathscr{C}(B,C)$ obtenemos un morfismo $g \circ f: A \longrightarrow B$, esto es, $g \circ f \in \mathscr{C}(A,C).$    
+    Si $f: A \longrightarrow B$ es un morfismo en $\mathscr{C}$, la acción  del functor contravariante sobre $f$ será una función entre conjuntos de la siguiente forma: 
+    \begin{equation}
+        \mathscr{C}(-,C)(f) = \psi: \mathscr{C}(B,C) \longrightarrow \mathscr{C}(A,C)
+    \end{equation} de forma que para cada $g \in \mathscr{C}(B,C)$ obtenemos un morfismo $g \circ f: A \longrightarrow C$, esto es, $g \circ f \in \mathscr{C}(A,C).$    
 \end{ejemplo}
 
 \section{Transformaciones naturales}
-\subsection{Definición y propiedades}
-En matemáticas siempre se suele comenzar estudiando los objetos y posteriormente las transformaciones entre ellos. En el apartado anterior hemos visto como los functores ``transforman'' una categoría en otra, respetando la estructura de la categoría. Nos proponemos ahora tratar los functores como objetos y definir transformaciones entre ellos que respeten las estructuras categóricas subyacentes. 
+En matemáticas, es común comenzar estudiando los objetos y, posteriormente, analizar las transformaciones entre ellos. En el apartado anterior, hemos visto cómo los functores ``transforman'' una categoría en otra, preservando su estructura categórica. Ahora, nos proponemos dar un paso más: considerar a los functores como objetos y definir transformaciones entre ellos que respeten las estructuras categóricas subyacentes.
 
 \begin{figure}[htpb]
     \centering
@@ -334,29 +319,30 @@ En matemáticas siempre se suele comenzar estudiando los objetos y posteriorment
 \end{figure}
 
 \begin{definicion}
-    Sean dos functores $F,G: \mathscr{A} \longrightarrow \mathscr{B}$ de una categoría $\mathscr{A}$ a una categoría $\mathscr{B}$. Una transformación natural $\alpha: F \Rightarrow G$ de $F$ a $G$ es una clase de morfismos $(\alpha_A:FA \longrightarrow GA)_{A\in \mathscr{A}}$ cumpliendo que para cada morfismo $f: A \longrightarrow A'$ se cumple \begin{equation}
+    Sean dos functores $F,G: \mathscr{A} \longrightarrow \mathscr{B}$ de una categoría $\mathscr{A}$ a una categoría $\mathscr{B}$. Una transformación natural $\alpha: F \Rightarrow G$ de $F$ a $G$ es una clase de morfismos $(\alpha_A:FA \longrightarrow GA)_{A\in \mathscr{A}}$ de $\mathscr{B}$ indexada por los elementos de $\mathscr{A}$ cumpliendo que para cada morfismo $f: A \longrightarrow A'$ se cumple \begin{equation}
         G(f) \circ \alpha_{A} = \alpha_{A'} \circ F(f)
     \end{equation}
     (ver diagrama \ref{diag:trans_natural})
-    \label{t_natural}
+    \label{t_natural_1}
 \end{definicion}
 
-\begin{figure}[htpb]
-    \centering
-    \begin{tikzcd}[row sep=huge]
-        \mathscr{A}
-        \arrow[bend left=65]{r}{F}
-        \arrow[r, "G"{inner sep=0,fill=white,anchor=center,name=G}]
-        \arrow[r, bend right=65, "H"{name=H, swap}]
-        \arrow[from=F.south-|G,to=G,Rightarrow,shorten=2pt,"\alpha"] 
-        \arrow[from=G,to=H.north-|G,Rightarrow,shorten=2pt,"\beta"] &
-        \mathscr{B}.
-    \end{tikzcd}
-\end{figure}
+%\begin{figure}[htpb]
+%    \centering
+%    \begin{tikzcd}[row sep=huge]
+%        \mathscr{A}
+%        \arrow[bend left=65]{r}{F}
+%        \arrow[r, "G", name=G]
+%        \arrow[r, bend right=65, "H", name=H, swap]
+%        \arrow[from=F.south-|G,to=G,Rightarrow,shorten=2pt,"\alpha"] 
+%        \arrow[from=G,to=H.north-|G,Rightarrow,shorten=2pt,"\beta"] &
+%        \mathscr{B}.
+%    \end{tikzcd}
+%\end{figure}
+
 
 \begin{definicion}
-        Dados $F,G,H$ functores de $\mathscr{A}$ a $\mathscr{B}$ y $\alpha: F \Rightarrow G$, $\beta: G \Rightarrow H$ se define la composición (vertical) de transformaciones naturales, $(\beta \circ \alpha)_{A}: F \Rightarrow H$, mediante la fórmula \begin{equation}
-        (\beta \circ \alpha)_{A} = \beta_{A} \circ \alpha_{A}
+        Dados $F,G,H$ functores de $\mathscr{A}$ a $\mathscr{B}$ y $\alpha: F \Rightarrow G$, $\beta: G \Rightarrow H$ se define la composición (vertical) de transformaciones naturales, $(\beta \circledcirc \alpha)_{A}: F \Rightarrow H$, mediante la fórmula \begin{equation}
+        (\beta \circledcirc \alpha)_{A} = \beta_{A} \circ \alpha_{A}
     \end{equation}
     
     Esta composición cumple:
@@ -371,24 +357,22 @@ En matemáticas siempre se suele comenzar estudiando los objetos y posteriorment
     \end{enumerate}
 \end{definicion}
 
-De forma análoga a como hemos discutido antes en el caso de las categorías y los functores, vemos que los functores entre $\mathscr{A}$ y $\mathscr{B}$ como objetos y las transformaciones naturales como morfismos entre ellos cumplen los axiomas que caracterizan a una categoría. Sin embargo, al igual que en el caso de los functores, no tenemos garantizado que el objeto que contiene todas las transformaciones naturales entre dos functores sea un conjunto. Con algunas condiciones extra, esta condición se cumple y los functores junto con las transformaciones naturales forman una categoría.
+De manera análoga a lo discutido previamente en el contexto de las categorías y los functores, observamos que los functores entre las categorías $\mathscr{A}$ y $\mathscr{B}$ pueden ser considerados como objetos, mientras que las transformaciones naturales se interpretan como morfismos entre dichos objetos. Ambas estructuras satisfacen los axiomas que definen una categoría. Sin embargo, al igual que en el caso de los functores, no podemos asegurar que el conjunto de todas las transformaciones naturales entre dos functores sea efectivamente un conjunto. Bajo ciertas condiciones adicionales, esta propiedad se cumple, y los functores junto con sus transformaciones naturales forman una categoría.
 
-Una forma intuitiva de entender las transformaciones naturales es de la siguiente forma: cuando aplicamos un functor en una categoría, asociamos a cada objeto un objeto, y a cada morfismo un morfismo. Sin embargo, en una transformación natural asignamos a cada objeto $A \in \mathscr{A}$ un morfismo $(\alpha_{A})$ y a cada morfismo $f: A \longrightarrow A'$ un diagrama cuadrado como el visto en el diagrama \ref{diag:trans_natural}. Por tanto, si vemos las categorías como objetos $0$-$dimensionales$ y los functores como objetos $1$-$dimensionales$, las transformaciones naturales serían objetos $2$-$dimensionales$. 
+Una forma intuitiva de entender las transformaciones naturales es la siguiente: al aplicar un functor a una categoría, asociamos a cada objeto un objeto y a cada morfismo un morfismo. En contraste, en una transformación natural, a cada objeto $A \in \mathscr{A}$ le asignamos un morfismo $\alpha_A$, y a cada morfismo $f: A \longrightarrow A'$ le asignamos un diagrama conmutativo, como el mostrado en el diagrama \ref{diag:trans_natural}. Por lo tanto, si consideramos las categorías como objetos de dimensión $0$, los functores como objetos de dimensión $1$, entonces las transformaciones naturales pueden interpretarse como objetos de dimensión $2$.
 
-\subsection{Ejemplos}
 Veamos algunos ejemplos de transformaciones naturales.
 
 \begin{ejemplo}
-    Sean el functor potencia en la categoría \textbf{Set}, definido en \ref{ejemplo:potencia}, y el functor identidad $id: \textbf{Set} \longrightarrow \textbf{Set}$. La transformación natural $\alpha: id \Rightarrow \mathcal{P}$ definida como $\alpha_{E}: E \longrightarrow \mathcal{P}(E)$ lleva cada elemento $x \in E$ al singleton ${x} \in \mathcal{P}(E)$.
+    Sean el functor potencia en la categoría \textbf{Set}, definido en \ref{ejemplo:potencia}, y el functor identidad $id: \textbf{Set} \longrightarrow \textbf{Set}$. La transformación natural $\alpha: id \Rightarrow \mathcal{P}$ definida como $\alpha_{E}: E \longrightarrow \mathcal{P}(E)$ lleva cada elemento $x \in E$ al \textit{singleton} ${x} \in \mathcal{P}(E)$.
 \end{ejemplo}
 
 \begin{ejemplo}
-    Sea una categoría $\mathscr{A}$ y un morfismo $f:A \longrightarrow B$ de $\mathscr{A}$. De los siguientes functores representables obtenemos una transformación natural $\mathscr{A}(f,-) : \mathscr{A}(B,-) \Rightarrow \mathscr{A}(A,-)$  que asocia a cada objeto $C \in \mathscr{A}$ una función entre conjuntos $\mathscr{A}(f,-)_{C}: \mathscr{A}(B,C) \longrightarrow \mathscr{A}(A,C)$ definida como \begin{equation}
-        \mathscr{A}(f,-)_{C}(g) = g \circ f
+    Sea una categoría $\mathscr{C}$ y un morfismo $f:A \longrightarrow B$ de $\mathscr{C}$. De los siguientes functores representables obtenemos una transformación natural $\mathscr{C}(f,-) : \mathscr{C}(B,-) \Rightarrow \mathscr{C}(A,-)$  que asocia a cada objeto $C \in \mathscr{C}$ una función entre conjuntos $\mathscr{C}(f,-)_{C}: \mathscr{C}(B,C) \longrightarrow \mathscr{C}(A,C)$ definida como \begin{equation}
+        \mathscr{C}(f,-)_{C}(g) = g \circ f
     \end{equation}
 \end{ejemplo}
 
-\subsection{Transformaciones naturales de functores contravariantes}
 La definición hecha en \ref{t_natural} corresponde a transformaciones naturales de functores covariantes. De forma análoga se definen las transformaciones naturales entre functores contravariantes. 
 
 \begin{figure}[htpb]
@@ -450,10 +434,9 @@ Veamos un ejemplo interesante:
 
 Vamos a empezar viendo algunos ejemplos comunes del concepto de límite, con el objetivo de tener una visión más general una vez enunciemos la definición.
 
-\subsection{Producto}
 
-\begin{definicion}
-    (Producto): Sea $\mathscr{C}$ una categoría y $A,B \in \mathscr{C}$ dos objetos. Un producto de $A,B$ consiste en un objeto $P$ y morfismos:
+\begin{definicion} [Producto] \label{definicion_producto} 
+    Sea $\mathscr{C}$ una categoría y $A,B \in \mathscr{C}$ dos objetos. Un producto de $A,B$ consiste en un objeto $P$ y morfismos:
 
     \begin{center}
         \begin{tikzcd}[row sep=1cm, column sep=1cm]
@@ -473,42 +456,55 @@ Vamos a empezar viendo algunos ejemplos comunes del concepto de límite, con el 
         \label{diag:producto}
     \end{figure}
         
-    en $\mathscr{C}$, existe un \textbf{único} morfismo $\bar{f}: Q \longrightarrow P$ tal que 
+    en $\mathscr{C}$, existe un \textbf{único} morfismo $r: Q \longrightarrow P$ tal que el diagrama \ref{diag:universal-producto} conmuta.
 
     \begin{figure}[htpb]
         \centering
         \begin{tikzcd}[row sep=1cm, column sep=1cm]
-            & Q \arrow[dashed]{d}[description]{\exists! \ \bar{f}} \arrow{ld}[swap]{q_A} \arrow{rd}{q_B} & \\
+            & Q \arrow[dashed]{d}[description]{\exists! \ r} \arrow{ld}[swap]{q_A} \arrow{rd}{q_B} & \\
             A & P \arrow{l}[swap]{p_{A}} \arrow{r}{p_{B}} & B
         \end{tikzcd}
         \caption{Propiedad universal del producto}
         \label{diag:universal-producto}
-    \end{figure}
-    conmuta. 
+    \end{figure} 
     
     Esto se conoce como propiedad universal del producto. El producto es el objeto (y morfismos) ``más general'' que cumple las condiciones de las proyecciones $p_{A}$ y $p_{B}$.
-    Lo notaremos como $(P, p_{A}, p_{B})$
-    
+    Lo notaremos como $(P, p_{A}, p_{B})$   
 \end{definicion}
 
-\begin{proposicion}
-    En una categoría \mathscr{C} el producto de dos objetos $A,B \in \mathscr{C}$ (si existe) es único salvo isomorfismo.
-    $(P, \pi_{1}, \pi_{2})$
+\begin{proposicion} \label{producto-salvo-iso}
+    En una categoría $\mathscr{C}$ el producto de dos objetos $A,B \in \mathscr{C}$ (si existe) es único salvo isomorfismo.
 \end{proposicion}
-\textit{Demostración.} Notar que el producto no siempre existe.  Por ejemplo, consideremos la categoría discreta 
-$\mathscr{A}$ formada únicamente por los objetos $A$ y $B$. En esta categoría no puede existir el producto de $A$ y $B$.
+\begin{proof}
+    Notar que el producto no siempre existe.  Por ejemplo, consideremos la categoría discreta 
+    $\mathscr{A}$ formada únicamente por los objetos $A$ y $B$. En esta categoría no puede existir el producto de $A$ y $B$. 
 
-Veamos ahora la unicidad salvo isomorfismo. Consideremos en la categoría \mathscr{C} dos productos $(P, p_A, p_B)$ y $(Q, q_A, q_B)$ de los
-objetos $A,B \in \mathscr{C}$. Como $(P, p_A, p_B)$ es un prodcuto, existe un único morfismo $\bar{f}: Q \longrightarrow P $ cumpliendo que 
-$q_A = p_A \circ \bar{f}$ y  $q_B = p_B \circ \bar{f}$. De forma análoga, como $(Q, q_A, q_B)$ es un producto, existe un único morfismo 
-$\bar{g}: P \longrightarrow Q $ cumpliendo $p_A = q_A \circ \bar{g}$ y  $p_B = q_B \circ \bar{g}$.
+    Veamos ahora la unicidad salvo isomorfismo. Consideremos en la categoría $\mathscr{C}$ dos productos $(P, p_A, p_B)$ y $(Q, q_A, q_B)$ de los
+    objetos $A,B \in \mathscr{C}$. Como $(P, p_A, p_B)$ es un prodcuto, existe un único morfismo $r: Q \longrightarrow P $ cumpliendo que 
+    $q_A = p_A \circ r$ y  $q_B = p_B \circ r$. De forma análoga, como $(Q, q_A, q_B)$ es un producto, existe un único morfismo 
+    $s: P \longrightarrow Q $ cumpliendo $p_A = q_A \circ s$ y  $p_B = q_B \circ s$.
 
+    Tomando ahora $(P, p_{A}, p_{B})$ como producto y como una tripleta cualquiera, por la propiedad universal del producto, existe un único morfismo
+    $t: P \longrightarrow P $ de forma que $p_A \circ t = p_A$ y $p_B \circ t = p_b$. Por la unicidad del morfismo en la propiedad universal, se tiene $t=1_P$.
+    Por otro lado, las relaciones
+
+    \begin{align}
+        p_A = q_A \circ s = p_A \circ r \circ s,\\
+        p_B = q_B \circ s = p_B \circ r \circ s
+    \end{align}
+
+    infieren que $r\circ s$ es otro morfismo cumlpiendo las propiedades antes indicadas. Por la unicidad de $t$ aseguramos que $t = r \circ s = 1_P$.
+    De forma análoga se prueba que $s \circ r = 1_Q$, luego $s$ y $r$ son isomorfismos inversos.
+\end{proof}
 
 Veamos algunos ejemplos de productos en diferentes categorías:
 
 \begin{ejemplo}
-    En la categoría \textbf{Set}, el producto de dos conjuntos $X,Y$ es el producto cartesiano usual $X \times Y$, equipado con las proyecciones usuales $\pi_{1}$ y $\pi_{2}$. Sea un conjunto $A$ y morfismos $f_1$ y $f_2$ como en \ref{diag:producto}. Definimos $\bar{f}: A \longrightarrow X \times Y$ como $\bar{f}(a) = (f_1(a),f_2(a))$. Se cumple de manera evidente que $\pi_i \circ \bar{f} = f_i$ con $i=1,2$; luego el diagrama \ref{diag:universal-producto} conmuta. Hay que probar que $\bar{f}$ es la única función entre $A$ y $X \times Y$ que cumple esta propiedad. Supongamos $\hat{f}: A \longrightarrow X \times Y$ cumpliendo $\pi_i \circ \hat{f} = f_i$ con $i=1,2$. Tomemos $a \in A$ y sin pérdida de generalidad escribimos $\hat{f}(a) = (x,y)$. Como $\hat{f}$ hace conmutar a \ref{diag:universal-producto}, se cumple que $f_1(a) = p_1(\hat{f}(a)) = p_1((x,y)) = x$ , $f_2(a) = p_2(\hat{f}(a)) = p_2((x,y)) = y$. Luego $\hat{f}(a) = (x,y) = (f_1(a),f_2(a)) = \bar{f}(a)$, obteniendo la unicidad buscada.
+    En la categoría \textbf{Set}, el producto de dos conjuntos $X,Y$ es el producto cartesiano usual $X \times Y$, equipado con las proyecciones usuales $\pi_{1}$ y $\pi_{2}$. 
 \end{ejemplo}
+\begin{proof}
+    Sea un conjunto $A$ y morfismos $f_1$ y $f_2$ como en \ref{diag:producto}. Definimos $r: A \longrightarrow X \times Y$ como $r(a) = (f_1(a),f_2(a))$. Se cumple de manera evidente que $\pi_i \circ r = f_i$ con $i=1,2$; luego el diagrama \ref{diag:universal-producto} conmuta. Hay que probar que $r$ es la única función entre $A$ y $X \times Y$ que cumple esta propiedad. Supongamos $s: A \longrightarrow X \times Y$ cumpliendo $\pi_i \circ s = f_i$ con $i=1,2$. Tomemos $a \in A$ y sin pérdida de generalidad escribimos $s(a) = (x,y)$. Como $s$ hace conmutar a \ref{diag:universal-producto}, se cumple que $f_1(a) = p_1(s(a)) = p_1((x,y)) = x$ , $f_2(a) = p_2(s(a)) = p_2((x,y)) = y$. Luego $s(a) = (x,y) = (f_1(a),f_2(a)) = r(a)$, obteniendo la unicidad buscada.
+\end{proof}    
 
 \begin{ejemplo}
     En la categoría \textbf{Grp} encontramos un producto en el \textit{producto directo de grupos}. Dados dos grupos $G$ y $H$, se define su producto directo $G \times H$ como: 
@@ -523,39 +519,187 @@ Veamos algunos ejemplos de productos en diferentes categorías:
 Podemos generalizar el concepto de producto en una categoría $\mathscr{A}$ de la siguiente forma.
 
 \begin{definicion}
-    Sea $\mathscr{A}$ una categoría e $I$ un conjunto y una familia de objetos $(X_i)_{i\in I}$. El producto de $(X_i)_{i\in I}$ consiste en un objeto $P$ y una familia de morfismos \begin{equation}
-        (P \xlongrightarrow{\pi_i} X_i)_{i \in I}
+    Sea $\mathscr{C}$ una categoría e $I$ un conjunto y una familia de objetos $\left(C_i\right)_{i\in I}$. El producto de $\left(C_i\right)_{i\in I}$ consiste en un objeto $P$ y una familia de morfismos \begin{equation}
+        \left(P \xrightarrow{p_i} C_i\right)_{i \in I}
     \end{equation}
-    de forma que para cada objeto $A$ y morfismos \begin{equation}
-        (A \xlongrightarrow{f_i} X_i)_{i \in I}
+    de forma que para cada objeto $Q$ y morfismos \begin{equation}
+        \left(Q \xrightarrow{q_i} C_i\right)_{i \in I}
     \end{equation}
-    existe un único morfismo $\bar{f}: A \longrightarrow P$ cumpliendo $f_i = \pi_i \circ \bar{f}$ para $i=1,2$.
+    existe un único morfismo $r: Q \longrightarrow P$ cumpliendo $q_i = p_i \circ r$ , $\forall i \in I$.
 \end{definicion}
 
-Veamos otro ejemplo de límite que nos será útil más adelante. 
+Definimos ahora el concepto \textit{dual} del producto: el coproducto.
 
-\begin{definicion}
-    (Equalizer): Sea $\mathscr{A}$ una categoría y \begin{tikzcd}
-        X \arrow[r, shift left]{s} \arrow[r, shift right]{t}
-        & Y
-    \end{tikzcd} objetos y morfismos en $\mathscr{A}$. Se define el equalizer de $s$ y $t$ como un objeto $E$ y un morfismo $E \xlongrightarrow{i} X$ de forma que \begin{tikzcd}
-        E \arrow[r]
-        & X \arrow[r, shift left]
-        \arrow[r, shift right]
-        & Y
-    \end{tikzcd}  cumple $s \circ i = t \circ i$ y para cualquier otro objeto $A$ y morfismo $A \xlongrightarrow{j} X$ cumpliendo la propiedad anterior, se tiene un único morfismo $\hat{f}: A \longrightarrow E$ de forma que
+\begin{definicion}[Coproducto] \label{definicion_coproducto} 
+    Sea \( \mathscr{C} \) una categoría y \( A, B \in \mathscr{C} \) dos objetos. Un coproducto de \( A \) y \( B \) consiste en un objeto \( Q \) y morfismos:
 
     \begin{center}
         \begin{tikzcd}[row sep=1cm, column sep=1cm]
-            A \arrow{rd}{j} \arrow[dotted]{d}[swap]{\hat{f}}\\
-            E \arrow{r}[swap]{i} & X
+            A \arrow{rd}{i_A} & & B \arrow{ld}[swap]{i_B} \\
+            & P & 
         \end{tikzcd}
     \end{center}
-    conmuta.
+    
+    de forma que para cada objeto \( Q \) y morfismos
+
+    \begin{figure}[htpb]
+        \centering
+        \begin{tikzcd}[row sep=1cm, column sep=1cm]
+            A \arrow{rd}{j_A} & & B \arrow{ld}[swap]{j_B} \\
+            & Q & 
+        \end{tikzcd}
+        \label{diag:coproducto}
+    \end{figure}
+
+    en \( \mathscr{C} \), existe un \textbf{único} morfismo \( r: P \longrightarrow Q \) tal que el diagrama \ref{diag:universal-coproducto} conmuta.
+
+    \begin{figure}[htpb]
+        \centering
+        \begin{tikzcd}[row sep=1cm, column sep=1cm]
+            & P \arrow[dashed]{d}[description]{\exists! \ r} \arrow{ld}{i_A} \arrow{rd}{i_B} & \\
+            A \arrow{r}{j_A} & Q & B \arrow{l}[swap]{j_B}
+        \end{tikzcd}
+        \caption{Propiedad universal del coproducto}
+        \label{diag:universal-coproducto}
+    \end{figure} 
+
+    Esto se conoce como propiedad universal del coproducto. El coproducto es el objeto (y morfismos) ``más general'' que cumple las condiciones de las inclusiones \( i_A \) y \( i_B \).
+    Lo notaremos como \( (P, i_A, i_B) \).   
 \end{definicion}
+
+Se puede generalizar, al igual que en el caso de los productos, la definición de coproducto a una familia de objetos $\left(C_i\right)_{i \in I}$ indexada sobre un conjunto $I$.
+
+\begin{definicion}
+    Sea \( \mathscr{C} \) una categoría e \( I \) un conjunto y una familia de objetos \( \left(C_i\right)_{i \in I} \). El coproducto de \( \left(C_i\right)_{i \in I} \) consiste en un objeto \( P \) y una familia de morfismos
+
+    \[
+        \left(C_i \xrightarrow{i_i} P\right)_{i \in I}
+    \]
+
+    de forma que para cada objeto \( Q \) y morfismos
+
+    \[
+        \left(C_i \xrightarrow{j_i} Q\right)_{i \in I}
+    \]
+
+    existe un único morfismo \( r: P \longrightarrow Q \) cumpliendo \( j_i = r \circ i_i \) para cada \( i \in I \).
+\end{definicion}
+
+De forma análoga a como se vio para los productos, obtenemos el siguiente resultado que se desprende de la propiedad universal del coproducto.
+
+\begin{proposicion}
+    Si el coproducto de una familia de objetos existe en una categoría, entonces es único salvo isomorfismo.
+\end{proposicion}
+
+\begin{proof}
+    Sean $\left(P, (s_i)_{i \in I}\right)$ y $(Q, (t_i)_{i \in I})$ dos coproductos de la familia de objetos $\left(C_i\right)_{i \in I}$ en la categoría $\mathscr{C}$.  
+    Por la propiedad universal del coproducto, dado que $(Q, (t_i)_{i \in I})$ también satisface esta propiedad, existe un único morfismo  
+    $
+    \rho: P \longrightarrow Q
+    $
+    tal que \( t_i = \rho \circ s_i \) para todo \( i \in I \). De manera análoga, como \( (P, (s_i)_{i \in I}) \) también es un coproducto, existe un único morfismo  
+    $
+    \sigma: Q \longrightarrow P
+    $
+    tal que \( s_i = \sigma \circ t_i \) para todo \( i \in I \).  
+
+    Ahora, observemos que, al considerar \( (P, (s_i)_{i \in I}) \) como un coproducto y aplicando nuevamente su propiedad universal a sí mismo, existe un único morfismo  
+    \[
+    \tau: P \longrightarrow P
+    \]
+    satisfaciendo \( s_i = \tau \circ s_i \) para todo \( i \in I \). Por la unicidad del morfismo en la propiedad universal, se tiene que \( \tau = 1_P \).  
+
+    Por otro lado, usando las relaciones anteriores, obtenemos:
+    \[
+    s_i = \sigma \circ t_i = \sigma \circ \rho \circ s_i.
+    \]
+    Como \( (P, (s_i)_{i \in I}) \) es un coproducto, la unicidad del morfismo inducido nos da \( \sigma \circ \rho = 1_P \).  
+
+    Un argumento análogo aplicado a \( (Q, (t_i)_{i \in I}) \) muestra que \( \rho \circ \sigma = 1_Q \).  
+
+    Por lo tanto, \( \rho \) y \( \sigma \) son morfismos inversos, lo que prueba que \( P \) y \( Q \) son isomorfos.
+\end{proof}
+    
+
+Veamos algunos ejemplos de coproductos en diferentes categorías:
+
+\begin{ejemplo}
+    En la categoría \textbf{Set}, el coproducto de una familia de conjuntos $\left(C_i\right)_{i \in I}$ es su unión disjunta, es decir, la unión de los conjuntos \( C_i \) considerados como disjuntos. Si los conjuntos \( C_i \) no son inherentemente disjuntos, se reemplazan por copias isomorfas y disjuntas, definiendo:
+
+    $$
+    C'_i = \{ (x, i) \mid x \in C_i \} = C_i \times \{ i \}.
+    $$
+    
+    A continuación, se toma la unión habitual de los conjuntos \( C'_i \). En resumen, el coproducto en \textbf{Set} se expresa como:
+    
+    $$
+    \bigsqcup_{i \in I} C_i = \{ (x, i) \mid i \in I, \ x \in C_i \}.
+    $$
+    
+    Los morfismos canónicos $s_i: C_i \longrightarrow \bigsqcup_{i \in I} C_i$ son las inclusiones triviales $s_i(x) = (x,i)$.
+\end{ejemplo}
+
+\begin{ejemplo}
+    En la categoría \textbf{Grp}, el coproducto de dos grupos \( G \) y \( H \) es el \textit{producto libre} \( G \ast H \), que consiste en todas las palabras formadas por elementos de \( G \) y \( H \), sin imponer más relaciones que las ya existentes en cada grupo.  
+\end{ejemplo}
+
+Por último, definimos el producto y coproducto de una familia de objetos vacía.
+
+\begin{definicion}
+    Un objeto \textbf{1} de una categoría $\mathscr{C}$ es final si todo objeto $C$ posee un único morfismo de codominio \textbf{1}.
+    
+    Equivalentemente, un objeto \textbf{0} de una categoría $\mathscr{C}$ es inicial si todo objeto $C$ tiene un morfismo de dominio \textbf{0}.
+\end{definicion}
+
+
+Veamos otro ejemplo de límite que nos será útil más adelante. 
+
+\begin{definicion} [Equalizer]
+    Sea $\mathscr{C}$ una categoría y \begin{tikzcd}f,g:
+        A \arrow[r, shift left]{s} \arrow[r, shift right]{t}
+        & B
+    \end{tikzcd} objetos y morfismos paralelos en $\mathscr{C}$. Se define el \textit{equalizer} de $f$ y $g$ como $(K,k)$ donde
+    \begin{enumerate}
+        \item $K$ es un objeto de $\mathscr{C}$
+        \item $k: K \longrightarrow A$ es un morfismo cumpliendo $f \circ k = g \circ k$
+    \end{enumerate}
+    y para cualquier dupla $(M,m)$ cumpliendo
+    \begin{enumerate}
+        \item $M$ es un objeto de $\mathscr{C}$
+        \item $m: M \longrightarrow A$ es un morfismo cumpliendo $f \circ m = g \circ m$
+    \end{enumerate}
+
+    existe un único morfimo $n: M \longrightarrow K$ cumpliendo $m = k \circ n$ (ver diagrama \ref{diagrama:equalizer}).
+
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzcd}[row sep=1cm, column sep=1cm]
+            M \arrow{rd}{m} \arrow[dotted]{d}[swap]{n}\\
+            K \arrow{r}[swap]{k} & A \arrow[r, shift left]{s} \arrow[r, shift right]{t}
+            & B
+        \end{tikzcd}
+        \label{diagrama:equalizer}
+    \end{figure}
+
+\end{definicion}
+
+\begin{proposicion} \label{eq:equalizer-salvo-iso}
+    De existir, el equalizer de dos morfismos es único salvo isomorfismo.
+\end{proposicion}
+\begin{proof}
+    Supongamos $(K,k)$ y $(M,m)$ dos equalizers del par $f,g$. Como $(K,k)$ es equalizer, por la propiedad universal existe $n: M \longrightarrow K$ cumpliendo $k \circ n = m$. De forma análoga, como $(M, m)$ también es equalizer, existe $l: K \longrightarrow M$ cumpliendo $k = m \circ l$. Obtenemos así la siguiente relación:
+
+    $$
+        k \circ n = m \Rightarrow m \circ l \circ n = m \Rightarrow l \circ n = 1_{M}
+    $$
+    De forma análoga se prueba $n \circ l = 1_K$, finalizando la demostración.
+\end{proof}
+
+Notaremos el equalizer de dos morfismos $f,g$ como $Ker(f,g)$.
 
 \begin{ejemplo}
     En la categoría \textbf{Set}, dados los conjuntos y funciones entre ellos \begin{tikzcd}
+        s,t:
         X \arrow[r, shift left]{s} \arrow[r, shift right]{t}
         & Y
     \end{tikzcd}, definimos el equalizer como el conjunto \begin{equation}
@@ -565,186 +709,652 @@ Veamos otro ejemplo de límite que nos será útil más adelante.
 
 \begin{ejemplo}
     En la categoría \textbf{Grp} consideremos un par de grupos $G$ y $H$ junto con homomorfismos \begin{tikzcd}
+        \epsilon, \theta:
         G \arrow[r, shift left]{s} \arrow[r, shift right]{t}
         & H
-    \end{tikzcd} donde $\epsilon: G \longrightarrow H$ es el homomorfismo trivial y $\theta: G \longrightarrow H$ es un homomorfismo cualquiera. El núcleo de $\theta$ será el equalizer del anterior diagrama, esto es, un objeto $ker \theta$ junto con un homomorfismo \begin{tikzcd}
-         ker \ \theta \arrow[hook]{r}{i} & G
+    \end{tikzcd} donde $\epsilon: G \longrightarrow H$ es el homomorfismo trivial y $\theta: G \longrightarrow H$ es un homomorfismo cualquiera. El núcleo de $\theta$ será el equalizer del anterior diagrama, esto es, un objeto $ker (\theta)$ junto con un homomorfismo \begin{tikzcd}
+         ker(\theta) \arrow[hook]{r}{i} & G
     \end{tikzcd} cumpliendo $\theta \circ i = \epsilon \circ i \implies \theta(g) = 0 \ \forall g \in ker \ \theta $.
 \end{ejemplo}
 
-Hemos visto dos construcciones diferentes: productos y equalizers. La filosofía detrás de estas construcciones es la misma: se parte de unos objetos con (posiblemente) morfismos entre sí. Se pretende construir un objeto junto con morfismos a los objetos originales de forma que se cumpla una propiedad universal.  
-
-En el caso de los productos, nuestro punto de partida son dos objetos 
-
-\begin{tikzpicture}
-    \node[draw, rectangle, minimum width=2cm, minimum height=0.5cm] (boxT) {};
-    \node[fill=black, circle, inner sep=1pt] at (-0.5, 0) {}; % Punto izquierdo
-    \node[fill=black, circle, inner sep=1pt] at (0.5, 0) {}; % Punto derecho
-\end{tikzpicture}      
+El concepto de coequalizer, al igual que ocurría con los coproductos y los productos, es el \textit{dual} del concepto de equalizer.
 
 \begin{definicion}
-    
+    (Coequalizer): Sea $\mathscr{C}$ una categoría y \begin{tikzcd}f,g:
+        A \arrow[r, shift left]{s} \arrow[r, shift right]{t}
+        & B
+    \end{tikzcd} dos morfismos paralelos en $\mathscr{C}$. Se define el \textit{coequalizer} de $f$ y $g$ como $(Q, q)$, donde
+    \begin{enumerate}
+        \item $Q$ es un objeto de $\mathscr{C}$,
+        \item $q: B \longrightarrow Q$ es un morfismo cumpliendo $q \circ f = q \circ g$.
+    \end{enumerate}
+    Y para cualquier objeto $Z$ y morfismo $h: B \longrightarrow Z$ tal que $h \circ f = h \circ g$, existe un \textbf{único} morfismo $u: Q \longrightarrow Z$ tal que $h = u \circ q$ (ver diagrama \ref{diagrama:coequalizer}).
+
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzcd}[row sep=1cm, column sep=1cm]
+            & & Z \\
+            A \arrow[r, shift left]{s} \arrow[r, shift right]{t}
+            & B \arrow{r}[swap]{q} \arrow{ru}{h} & Q \arrow[dotted]{u}[swap]{u}
+        \end{tikzcd}
+        \label{diagrama:coequalizer}
+    \end{figure}
+
 \end{definicion}
+
+\begin{proposicion} \label{coeq:coequalizer}
+    De existir, el coequalizer de dos morfismos es único salvo isomorfismo.
+\end{proposicion}
+
+La prueba es equivalente a la vista en \ref{eq:equalizer-salvo-iso}.
+
+Veamos algunos ejemplos de coequalizers en distintas categorías.
+
+\begin{ejemplo}
+    En la categoría \textbf{Set}, el coequalizer de los morfismos paralelos 
+    \begin{tikzcd}
+        f,g: X \arrow[r, shift left] \arrow[r, shift right] & Y
+    \end{tikzcd} 
+    es el conjunto cociente $Y / \sim$, donde $\sim$ es la relación de equivalencia generada por los pares $(f(x), g(x))$ para cada $x \in X$.
+\end{ejemplo}
+
+\begin{proof}
+    Definimos el conjunto cociente $Y / \sim$, donde la relación de equivalencia $\sim$ sobre $Y$ se establece de la siguiente manera:
+
+    $$
+        y \sim y' \quad \text{si y solo si existe } x \in X \text{ tal que } y = f(x), \quad y' = g(x).
+    $$
+
+    La proyección canónica $\pi: Y \to Y / \sim$ asigna a cada elemento $y \in Y$ su clase de equivalencia $[y]_{\sim}$. Por construcción, esta proyección satisface la relación:
+
+    $$
+        \pi \circ f = \pi \circ g.
+    $$
+
+    Esto se debe a que, por definición de $\sim$, se tiene que $f(x) \sim g(x)$ para todo $x \in X$, lo que implica que $\pi(f(x)) = \pi(g(x))$. 
+
+    Ahora, debemos verificar que $(Y / \sim, \pi)$ satisface la propiedad universal del coequalizer. Es decir, dados un conjunto $Z$ y una función $h: Y \to Z$ que cumple 
+
+    \begin{equation} \label{eq:igualdad_h}
+        h \circ f = h \circ g,
+    \end{equation}
+
+    existe una única función $u: Y / \sim \to Z$ tal que el siguiente diagrama conmuta:
+
+    \begin{equation} \label{eq:coeq_universal}
+        h = u \circ \pi.
+    \end{equation}
+
+    Definimos $u$ de la siguiente manera:
+
+    $$
+        u([y]) = h(y).
+    $$
+
+    \begin{itemize}
+        \item  \textbf{Bien definida}: Para que $u$ esté bien definida, debemos comprobar que si $y \sim y'$, entonces $u([y]) = u([y'])$. Como $y \sim y'$ significa que existe $x \in X$ tal que $y = f(x)$ y $y' = g(x)$, aplicando \eqref{eq:igualdad_h} obtenemos:
+
+        $$
+            u([y]) = h(y) = h(f(x)) = h(g(x)) = h(y') = u([y']).
+        $$
+
+        \item  \textbf{Unicidad}: Supongamos que existe otra función $u': Y / \sim \to Z$ que también satisface \eqref{eq:coeq_universal}, es decir, que cumple $h = u' \circ \pi$. Entonces, para cualquier $y \in Y$:
+
+        $$
+            u([y]) = h(y) = u'([y]).
+        $$
+    
+        Como esto vale para todo $y \in Y$, concluimos que $u = u'$, lo que garantiza la unicidad de $u$.
+    \end{itemize}
+
+    Por lo tanto, $Y / \sim$ junto con la proyección $\pi$ cumple la propiedad universal del coequalizer, lo que prueba que es ``el'' coequalizer de $f$ y $g$.
+\end{proof}
+
+Hemos visto dos construcciones diferentes: productos, equalizers y sus construcciones duales: coproductos y coequalizers. La filosofía detrás de estas construcciones es la misma: se parte de unos objetos con (posiblemente) morfismos entre sí y se pretende construir un objeto junto con morfismos a los objetos originales de forma que se cumpla una propiedad universal. Vamos a generalizar estas construcciones.
+
+Los datos iniciales para construir un producto binario son los objetos
+
+\begin{equation} \label{data:iniciales-producto}
+    A \hspace{1.5cm} B
+\end{equation}
+
+y para construir un equalizer tenemos el diagrama inicial
+
+\begin{equation} \label{data:iniciales-equalizer}
+    \begin{tikzcd}
+        f,g: A \arrow[r, shift left]{f} \arrow[r, shift right]{g} & B
+    \end{tikzcd}
+\end{equation}
+
+
+\begin{definicion} [Elemento generalizado] \label{def:generalized-element}
+    Sea \( A \) un objeto de una categoría \( \mathscr{C} \). Decimos que un morfismo \( S \longrightarrow A \) es un elemento generalizado de \( A \) de forma \( S \).
+\end{definicion}
+
+Aunque esta definición simplemente introduce una forma alternativa de considerar los morfismos con codominio en \( A \), sin implicaciones adicionales inmediatas, proporciona una perspectiva interesante sobre cómo entendemos las estructuras matemáticas.
+
+En la categoría \textbf{Set}, un elemento generalizado de un conjunto \( A \) de forma \( 1 \) es simplemente un elemento de \( A \). Por otro lado, un elemento generalizado de \( A \) de forma \( \mathbb{N} \) es una sucesión sobre \( A \).
+
+En la categoría \textbf{Top}, un elemento generalizado de un espacio topológico \( X \) de forma \( [0,1] \) es un arco, y uno de forma \( S^1 \) es un lazo.
+
+De esta manera, la definición \ref{def:generalized-element} ilustra que los elementos de una estructura matemática pueden ser entendidos según cómo distintas estructuras interactúan con ella a través de morfismos. Esta idea es fundamental en la teoría de categorías, donde el enfoque se centra más en cómo los objetos interactúan \textbf{entre sí} que en cómo son definidos \textbf{por sí mismos}.
+
+Sin excepción, las categorías también pueden ser comprendidas desde esta óptica a partir de los functores: si tomamos $\textbf{Cat}$ como la colección de todas las categorías y functores entre ellas, un objeto de una categoría $\mathscr{A}$ puede ser comprendido como un functor $\textbf{1} \longrightarrow \mathscr{A}$ de dominio una categoría especial con un único elemento, $\textbf{1} = 
+\raisebox{-0.1cm}{
+\begin{tikzpicture}
+    \node[draw, rectangle, minimum width=0.4cm, minimum height=0.4cm] (boxT) {}; % Cuadro
+    \node[fill=black, circle, inner sep=1.7pt] at (0, 0) {}; % Punto grueso en el centro
+\end{tikzpicture}}$.
+
+De la misma forma, un morfismo de $\mathscr{A}$ puede ser visto como un functor $\textbf{2} \longrightarrow \mathscr{A}$ donde $\textbf{2} = 
+\raisebox{-0.1cm}{
+\begin{tikzpicture}
+    \node[draw, rectangle, minimum width=1.4cm, minimum height=0.4cm] (boxT) {}; % Cuadro más grande para ajustarse a los puntos
+    \node[fill=black, circle, inner sep=1.7pt] at (-0.5, 0) {}; % Primer punto a la izquierda
+    \node[fill=black, circle, inner sep=1.7pt] at (0.5, 0) {}; % Segundo punto a la derecha
+    \draw[->] (-0.35, 0) -- (0.35, 0); % Flecha con punta entre los dos puntos
+\end{tikzpicture}}$ es una categoría con dos objetos y un morfismo entre ellos. 
+
+Podemos usar esta filosofía para representar las estructuras iniciales de productos y equalizers en una categoría $\mathscr{C}$:
+
+$$
+    \textbf{P} = 
+    \raisebox{0.1cm}{
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \node[draw, rectangle, minimum width=1.4cm, minimum height=0.4cm] (boxT) {};
+        \node[fill=black, circle, inner sep=1.7pt] at (-0.5, 0) {};
+        \node[fill=black, circle, inner sep=1.7pt] at (0.5, 0) {};
+    \end{tikzpicture}}
+    \hspace{0.5cm} \text{,} \hspace{0.5cm}
+    \textbf{E} = 
+    \raisebox{0.1cm}{
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \node[draw, rectangle, minimum width=1.4cm, minimum height=0.4cm] (boxT) {};
+        \node[fill=black, circle, inner sep=1.7pt] at (-0.5, 0) {};
+        \node[fill=black, circle, inner sep=1.7pt] at (0.5, 0) {};
+        \draw[->] (-0.35, 0.1) -- (0.35, 0.1);
+        \draw[->] (-0.35, -0.1) -- (0.35, -0.1);
+    \end{tikzpicture}}
+$$
+
+Un functor $\textbf{P} \longrightarrow \mathscr{C}$ consiste en los datos \eqref{data:iniciales-producto} y otro $\textbf{E} \longrightarrow \mathscr{C}$ consiste en los datos \eqref{data:iniciales-equalizer}.
+
+\begin{definicion} [Diagrama]
+    Sea $\mathscr{C}$ una categoría e \textbf{I} una categoría pequeña. Diremos que un functor $\textbf{I} \longrightarrow \mathscr{C}$ es un diagrama en $\mathscr{C}$ de forma \textbf{I}.
+\end{definicion}
+
+Luego \eqref{data:iniciales-producto} y \eqref{data:iniciales-equalizer} son diagramas de forma \textbf{P} y \textbf{E} respectivamente.
+
+\begin{definicion}
+    Sea $\mathscr{C}$ una categoría, \textbf{I} una categoría pequeña y $D: \textbf{I} \longrightarrow \mathscr{C}$ un diagrama en $\mathscr{C}$.
+
+    \begin{enumerate}
+        \item Un \textbf{cono} sobre $D$ es un objeto $C \in \mathscr{C}$ junto con una familia
+        
+        \begin{equation} \label{limit:cono}
+            \left( C \overset{q_I}{\longrightarrow} D(I)\right)_{I \in \textbf{I}}
+        \end{equation}
+
+        de morfismos de forma que para todo morfismo $u: I \longrightarrow J$ en \textbf{I}, $q_J = D(u) \circ q_I$.
+
+        \item Un \textbf{límite} de $D$ es un cono $\left(L, (p_I)_{I \in \textbf{I}}\right)$ con la propiedad de que para cualquier otro cono de la forma \eqref{limit:cono}, existe un único morfismo $c: C \longrightarrow L$ de forma que para todo objeto $I \in \textbf{I}$ se cumple $q_I = p_I \circ c$.
+
+    \end{enumerate}
+\end{definicion}
+
+Esta definición generaliza y abstrae los conceptos de producto y equalizer, unificándolos dentro de un mismo marco teórico. 
+
+Otro ejemplo familiar de límite en una categroía es el siguiente.
+
+\begin{observacion}
+    La categoría $(\mathbb{N}, \leq)$ tiene como objetos a los números naturales, y para cada par de objetos $n,m$ un morfismo $n \longrightarrow m$ si $n \leq m$. Por tanto, la categoría $(\mathbb{N}, \leq)^{op}$ tiene los mismos objetos y morfismos $n \longrightarrow m$ si $m \leq n$.
+\end{observacion}
+
+\begin{ejemplo}
+    Sea $\textbf{I} = (\mathbb{N}, \leq)^{op}$, $\mathscr{C} = \textbf{Set}$ y un diagrama $D: \textbf{I} \longrightarrow \textbf{Set}$ que asocia a cada $n \in \textbf{I}$ un conjunto $X_n$, y a cada morfismo  $n \longrightarrow m$ (recordemos que entonces $m \leq n$) la función inclusión $X_n \subseteq X_m$. Resulta evidente que el conjunto $X_0$ asociado al objeto $0 \in \textbf{I}$ contiene al resto de conjuntos del diagrama. De hecho, se tiene la cadena de inclusiones
+
+    \begin{equation}
+        X_{n+1} \subseteq X_n \subseteq \dots \subseteq X_2 \subseteq X_1 \subseteq X_0 \text{.}
+    \end{equation}
+
+    El límite del diagrama $D$ será el conjunto intersección $\bigcap_{i \in \mathbb{N}} X_i $ de todos los conjuntos.
+
+\end{ejemplo}
+
+Como ha sido habitual en este capítulo, incluimos la definición del concepto dual de límite: el colímite.
+
+\begin{definicion} 
+    Sea $\mathscr{C}$ una categoría, \textbf{I} una categoría pequeña y $D: \textbf{I} \longrightarrow \mathscr{C}$ un diagrama en $\mathscr{C}$.
+    \begin{enumerate}
+        \item Un \textbf{cocono} sobre $D$ es un objeto $C \in \mathscr{C}$ junto con una familia
+        
+        \begin{equation} \label{colimit:cocono}
+            \left( D(I) \overset{q_I}{\longrightarrow} C\right)_{I \in \textbf{I}}
+        \end{equation}
+
+        de morfismos de forma que para todo morfismo $u: I \longrightarrow J$ en \textbf{I}, $q_I = q_J \circ D(u)$.
+
+        \item Un \textbf{colímite} de $D$ es un cocono $\left(L, (p_I)_{I \in \textbf{I}}\right)$ con la propiedad de que para cualquier otro cocono de la forma \eqref{colimit:cocono}, existe un único morfismo $c: L \longrightarrow C$ tal que para todo objeto $I \in \textbf{I}$ se cumple $q_I = c \circ p_I$.
+    \end{enumerate}
+\end{definicion}  
+
+\section{Adjunciones}
+Otro concepto categórico que jugará un papel fundamental en las etapas posteriores de este trabajo es el de functores adjuntos. Una adjunción describe una relación especial entre dos functores que permite establecer correspondencias naturales entre los morfismos de dos categorías diferentes. Este tipo de relación no solo facilita el paso de información de una categoría a otra, sino que también preserva estructuras algebraicas y topológicas de manera coherente.
+
+Un caso particularmente importante que veremos más adelante es la adjunción entre el functor realización geométrica y el functor singular. Esta adjunción es clave para comprender cómo se trasladan conceptos algebraicos entre categorías, y cómo este paso de información puede ser aprovechado en el análisis topológico de datos.
+
+\begin{definicion}
+    Sean \begin{tikzcd}
+        \mathscr{B} \arrow[shift left]{r}{F} & \mathscr{C} \arrow[shift left]{l}{G}
+    \end{tikzcd} categorías y functores. Decimos que $F$ es adjunto por la izquierda a $G$ y $G$ es adjunto por la derecha a $F$, escribiendo $F \dashv G$, si para todo $B \in \mathscr{B}$ y $C \in \mathscr{C}$, existe un isomorfismo:
+    
+    \begin{equation}
+        \mathscr{C}(F(B),C) \cong \mathscr{B}(B,G(C)),
+    \end{equation}
+    
+    que es \textbf{natural} en $B$ y $C$, es decir, satisface:
+    
+    1. \textbf{Naturalidad en $B$}: Para todo morfismo $f: B' \to B$ en $\mathscr{B}$, el siguiente diagrama conmuta:
+    \[
+    \begin{tikzcd}[column sep=large]
+        \mathscr{C}(F(B), C) \arrow{r}{\sim} \arrow{d}{F(f)^*} & \mathscr{B}(B, G(C)) \arrow{d}{f^*} \\
+        \mathscr{C}(F(B'), C) \arrow{r}{\sim}                     & \mathscr{B}(B', G(C))
+    \end{tikzcd}
+    \]
+    
+    2. \textbf{Naturalidad en $C$}: Para todo morfismo $g: C \to C'$ en $\mathscr{C}$, el siguiente diagrama conmuta:
+    \[
+    \begin{tikzcd}[column sep=large]
+        \mathscr{C}(F(B), C) \arrow{r}{\sim} \arrow{d}{g_*} & \mathscr{B}(B, G(C)) \arrow{d}{G(g)_*} \\
+        \mathscr{C}(F(B), C') \arrow{r}{\sim}                  & \mathscr{B}(B, G(C'))
+    \end{tikzcd}
+    \]
+    
+    donde:
+    \begin{itemize}
+        \item $F(f)^*$ denota precomposición con $F(f)$,
+        \item $f^*$ denota precomposición con $f$,
+        \item $g_*$ denota poscomposición con $g$,
+        \item $G(g)_*$ denota poscomposición con $G(g)$.
+    \end{itemize}
+
+\end{definicion}
+
 
 \section{Categorías abelianas}
 
-\subsection{Conceptos previos}
+Introducimos ahora un tipo de categoría central para el desarrollo de nuestras ideas: las categorías abelianas. Estas estructuras serán fundamentales en nuestro enfoque categórico de la homología persistente, proporcionando un marco adecuado para el estudio de exactitud y homología en un contexto abstracto.
 
-\subsection{Definicion y propiedades}
 
-\section{Adjunciones}
+\begin{definicion} [Monomorfismo]
+    Sea $\mathscr{C}$ una categoría y $f: A \longrightarrow B$ un morfismo en $\mathscr{C}$. Diremos que $f$ es un \textbf{monomorfismo} si dado un objeto $C$ y morfismos $g,h: C \longrightarrow A$ se cumple la siguiente propiedad:
 
-\section{Texto básico}
+    \begin{equation}
+        (f \circ g = f \circ h) \Rightarrow (g = h)
+    \end{equation}
 
-En esta sección presentaremos diferentes ejemplos de los elementos de texto básico. Conviene consultar el contenido de \texttt{capitulos/capitulo01.tex} para ver cómo se han incluido.
-
-\subsection{Listas}
-En \LaTeX\ tenemos disponibles los siguientes tipos de listas:
-
-Listas enumeradas:
-\begin{enumerate}
-  \item item 1
-  \item item 2
-  \item item 3
-\end{enumerate}
-
-Listas no enumeradas
-\begin{itemize}
-  \item item 1
-  \item item 2
-  \item item 3
-  \end{itemize}
-
-Listas descriptivas
-\begin{description}
-  \item[termino1] descripción 1
-  \item[termino2] descripción 2
-\end{description}
-  
-\subsection{Tablas y figuras}
-
-En la \autoref{tb:ejemplo-tabla} o la \autoref{fig:logo-ugr} podemos ver\ldots
-
-\begin{table}[htpb]
-  \centering
-  \begin{tabular}{ccc} \toprule
-    \multicolumn{2}{c}{Agrupados} \\ \cmidrule(r){1-2}
-    cabecera & cabecera & cabecera          \\ \midrule
-    elemento & elemento & elemento          \\ 
-    elemento & elemento & elemento          \\ 
-    elemento & elemento & elemento          \\ \bottomrule
-  \end{tabular}
-  \caption{Ejemplo de tabla}
-  \label{tb:ejemplo-tabla}
-\end{table}
-
-\begin{figure}[htpb]
-  \centering
-  \includegraphics[width=0.5\textwidth]{logo-ugr}
-  \caption{Logotipo de la Universidad de Granada}
-  \label{fig:logo-ugr}
-\end{figure}
-
-\section{Formulas matematicas}\label{sec:functores}
-
-La plantilla tiene definidos varios entornos matemáticos cuyo nombre es el mismo omitiendo los acentos. Así, para incluir una \emph{proposición} usaríamos:
-
-\begin{verbatim}
-\begin{proposicion}
-texto de la proposición
-\end{proposicion} 
-\end{verbatim}
-
-Ver el código fuente del archivo \texttt{documentacion.tex} en la carpeta \texttt{capitulos} para el resto de ejemplos.
-
-\begin{teorema}\label{thm:teorema}
-Esto es un ejemplo de teorema.
-\end{teorema}
-
-\begin{proposicion}
-Ejemplo de proposición
-\end{proposicion}
-
-\begin{lema}
-Ejemplo de lema
-\end{lema}
-
-\begin{corolario}
-Ejemplo de corolario
-\end{corolario}
-
-\begin{definicion}
-Ejemplo de definición
+    Usaremos el símobolo $f: A \rightarrowtail B$ para indicar que $f$ es un monomorfismo.
 \end{definicion}
 
+\begin{definicion} [Epimorfismo]
+    Sea $\mathscr{C}$ una categoría y $f: A \longrightarrow B$ un morfismo en $\mathscr{C}$. Diremos que $f$ es un \textbf{epimorfismo} si, dado un objeto $C$ y morfismos $g,h: B \longrightarrow C$, se cumple la siguiente propiedad:
+
+    \begin{equation}
+        (g \circ f = h \circ f) \Rightarrow (g = h)
+    \end{equation}
+
+    Usaremos el símbolo $f: A \twoheadrightarrow B$ para indicar que $f$ es un epimorfismo.
+\end{definicion}
+
+
+\begin{proposicion}
+    En una categoría $\mathscr{C}$, cuando dos morfismos \begin{tikzcd}
+        f,g: A \arrow[r, shift left]{f} \arrow[r, shift right]{g} & B
+    \end{tikzcd} tienen equalizer $(K,k)$, el morfismo $k: K \longrightarrow A$ es un monomorfismo.
+\end{proposicion}
+\begin{proof}
+    Sean \begin{tikzcd}
+        u,v: C \arrow[r, shift left]{f} \arrow[r, shift right]{g} & K
+    \end{tikzcd} morfismos y supongamos que se cumple 
+    \begin{equation} \label{hipo:mono}
+        k \circ u = k \circ v\text{.}
+    \end{equation}
+    Queremos probar que entonces $u = v$. Como $(K,k)$ es equalizer de $f,g$ se cumple $f \circ k = g \circ k$, luego componiendo a la derecha con $u$ y $v$ se preserva la igualdad
+
+    \begin{equation} \label{demo:monomorfismo}
+        f \circ k \circ u = g \circ k \circ u \text{.}
+    \end{equation}
+
+    Tenemos que $(C, k \circ u) = (C, k \circ v)$, por \eqref{hipo:mono}, es una dupla que cumple \eqref{demo:monomorfismo} y como $(K,k)$ es el equalizer de $f,g$, por la propiedad universal de este límite existe un único morfismo $s: C \longrightarrow K$ cumpliendo
+
+    \begin{equation} \label{propiedad:uni}
+        k \circ s = k \circ u = k \circ v \text{.}
+    \end{equation}
+
+    Como $u$ y $k$ también cumplen \eqref{propiedad:uni}, la propiedad universal nos dice que necesariamente $s = u = v$, concluyendo la demostración.
+\end{proof}
+
+De forma análoga se demuestra la propiedad dual: En una categoría $\mathscr{C}$, cuando dos morfismos \begin{tikzcd}
+    f,g: A \arrow[r, shift left]{f} \arrow[r, shift right]{g} & B
+\end{tikzcd} tienen un coequalizer $(K,k)$, el morfismo $k: B \longrightarrow K$ es un epimorfismo.
+
+\begin{definicion}
+    Un \textbf{objeto cero} en una categoría $\mathscr{C}$ es un objeto $\boldsymbol{0}$ que es inicial y final al mismo tiempo. 
+\end{definicion}
+
+Notar que la definición de objeto cero es \textit{autodual}: se preserva en la categoría opuesta $\mathscr{C}^{op}$.
+
+\begin{definicion}
+    Sea una categoría $\mathscr{C}$ con un objeto $\boldsymbol{0}$. Un morfismo $f: A \longrightarrow B$ es un \textbf{morfismo cero} cuando factoriza a través del objeto $\boldsymbol{0}$. Es decir, el diagrama \ref{diag:zero-morphism} es conmutativo. 
+\end{definicion}
+
+\begin{figure}[h!]
+    \centering
+    \begin{tikzcd}
+        & \boldsymbol{0} \arrow{rd} \\
+        A \arrow{ru} \arrow{rr}[swap]{0_{A,B}} & & B
+    \end{tikzcd}
+    \caption{Diagrama conmutativo para morfismo cero}
+    \label{diag:zero-morphism}
+\end{figure}
+
+
+\begin{proposicion} \label{unicidad-morfismo-cero}
+    En una categoria $\mathscr{C}$ con un objeto cero $\boldsymbol{0}$, hay un único morfismo cero de cada objeto $A$ a cada objeto $B$.
+\end{proposicion}
+Sabemos que hay por lo menos un morfismo cero, digamos $0_{A,B}$, definido como la composición de los morfismos $A \longrightarrow \boldsymbol{0}$ y $\boldsymbol{0} \longrightarrow B$. Cualquier otro morfismo cero $f: A \longrightarrow B$ factoriza, por definición, a través del objeto cero. Es decir, se cumple la relación 
+
+$$
+    f = (\boldsymbol{0} \longrightarrow B) \circ (A \longrightarrow \boldsymbol{0}) \text{.}
+$$
+
+Para concluir $0_{A,B} = (A \longrightarrow \boldsymbol{0}) \circ (\boldsymbol{0} \longrightarrow B) = f$.
+
 \begin{observacion}
-Ejemplo de observación
+    A ``el'' morfismo cero entre dos objetos $A$ y $B$ lo notaremos $0_{A,B}$.
 \end{observacion}
 
-Adicionalmente está definido el entorno \texttt{teorema*} que permite incluir un teorema sin numeración:
+\begin{proposicion} \label{composicion-es-cero}
+    En una categoría $\mathscr{C}$ con un objeto cero $\boldsymbol{0}$, la composición de un morfismo cero con un morfismo arbitrario es de nuevo un morfismo cero.
+\end{proposicion}
+\begin{proof}
+    Sea $f: A \longrightarrow B$ un morfismo cualquiera y $0_{B,C}: B \longrightarrow C$ el morfismo cero correspondiente. Por composición de morfismos y la definición de morfismo cero tenemos:
 
-\begin{teorema*}[Fórmula de Gauß-Bonnet]
-  Sea $S$ una superficie compacta y $K$ su curvatura de Gauß. Entonces
-\begin{equation}
-  \int_S K = 2\pi\chi(S)
-\end{equation}
-donde $\chi(S)$ es la característica de Euler de $S$.
-\end{teorema*}
+    \begin{equation}
+        0_{B,C} \circ f = \left(0_{C} \circ 0_{B}\right) \circ f 
+    \end{equation}
 
-Las fórmulas matemáticas se escriben entre símbolos de dólar \$ si van en línea con el texto o bien usando el entorno%
-\footnote{
-  También es posible delimitar una ecuación mediante los comandos \texttt{$\backslash$[} y \texttt{$\backslash$]} pero éstas nunca llevarán numeración aunque añadamos una etiqueta y las referenciemos (ver \autoref{sec:referencias}).
-} 
-\texttt{equation} cuando queremos que se impriman centradas en una línea propia, como el siguiente ejemplo
-\begin{equation}\label{eq:identidad-pitagorica}
-  \cos^2 x + \sin^2 x = 1.
-\end{equation}
+    Aplicando asociatividad en la composición:
 
+    \begin{equation}
+        0_{B,C} \circ f = \left(0_{C} \circ 0_{B}\right) \circ f =  0_{C} \circ \left(0_{B} \circ f\right)
+    \end{equation}
 
-Gracias al paquete \texttt{mathtools}, las ecuaciones escritas dentro del entorno \texttt{equation} llevarán numeración de forma automática si son referenciadas  en cualquier parte del documento (por ejemplo la identidad Pitagórica~\eqref{eq:identidad-pitagorica}, ver el código de los dos anteriores ejemplos y la \autoref{sec:referencias} para más información sobre referencias cruzadas en el documento).
+    donde $\left(0_{B} \circ f\right) : A \longrightarrow \boldsymbol{0}$, pero por definición de $\boldsymbol{0}$, existe un único morfismo $0_{A}: A \longrightarrow \boldsymbol{0}$ luego $\left(0_{B} \circ f\right) = 0_A$. Obtenemos de esta forma la igualdad
 
-\section{Código}
+    $$
+    0_{B,C} \circ f =  0_{C} \circ \left(0_{B} \circ f\right) = 0_{C} \circ 0_{A}
+    $$
 
-Podemos incluir un archivo externo de código mediante el comando \texttt{lstinputlisting} especificando su nombre completo (incluyendo la extensión) y usando la opción \texttt{inputpath} para indicar la ruta hacia el fichero (siempre referida a la carpeta principal de la plantilla) así como la opción \texttt{language} para indicar el lenguaje de programación en que está escrito (esto permitirá a \LaTeX\ colorear adecuadamente el código). Además, si lo consideramos necesario, podemos indicar las líneas que queremos mostrar (ver el código fuente del \autoref{code:prime}). Consultar todas las opciones posibles en la \href{https://osl.ugr.es/CTAN/macros/latex/contrib/listings/listings.pdf}{documentación del paquete \texttt{listings}}.
-
-\lstinputlisting[inputpath=code, language=R, linerange={11-17}, firstnumber={11}, caption={Extracto código (líneas de 11 a 17) del fichero \texttt{primeR.r}}, label={code:prime}]{primeR.r}
-
-Alternativamente, podemos incluir el código en un entorno \texttt{lstlisting} como el \autoref{code:perceptron}
-
-\begin{lstlisting}[caption={Implementación de un perceptrón}, label={code:perceptron}, language={python}]
-def dot(v, w):
-    """Producto escalar de v y w, |$\color{comment}v_0 \cdot   w_0 + \cdots + v_n \cdot w_n$|"""
-    return sum(v_i * w_i for v_i, w_i in zip(v, w))
-
-def funcion_activacion(x):
-    """1 si la entrada es mayor o igual que 1, 0 en otro caso."""
-    return 1 if x >= 0 else 0
-
-def perceptron(entrada, pesos):
-    """1 si el perceptron se activa, 0 en otro caso"""
-    return funcion_activacion(dot(entrada, pesos))
-\end{lstlisting}
-
-La opción \texttt{float} al incluir un listado de código permitará a dicho bloque ``flotar'' como si fuese un entorno \texttt{figure} y de esta manera evitaremos que se corte al final de una página.
+     que demuestra que $0_{B,C} \circ f$ es un morfismo cero.
+\end{proof}
 
 
-\section{Referencias a elementos del texto}\label{sec:referencias}
+\begin{definicion}
+    En una categoría $\mathscr{C}$ con un objeto cero  $\boldsymbol{0}$, el núcleo de un morfismo $f: A \longrightarrow B$ es, cuando exista, el equalizer de $f$ y el morfismo cero $0_{A,B}: A \longrightarrow B$. Al objeto lo notaremos $Ker(f)$ y el morfismo asociado será $k: Ker(f) \longrightarrow A$. El cokernel se define de forma dual.
+\end{definicion}
 
-Para las referencias a los elementos del texto (secciones, capítulos, teoremas,\ldots) se procede de la siguiente manera:
-\begin{itemize}
-  \item Se \emph{marca} el elemento (justo después del mismo si se trata de un capítulo o sección o en el interior del \emph{entorno} en otro caso), mediante el comando \verb+\label{+\emph{etiqueta}\verb+}+, donde \emph{etiqueta} debe ser un identificador único.
-  \item Para crear una referencia al elemento en cualquier otra parte del texto se usa el comando \verb+\ref{+\emph{etiqueta}\verb+}+ (únicamente imprime la numeración asociada a dicho elemento, por ejemplo \ref{ch:primer-capitulo} o \ref{thm:teorema}) o bien \verb+\autoref{+\emph{etiqueta}\verb+}+ (imprime la numeración del elemento así como un texto previo indicando su tipo, por ejemplo \autoref{ch:primer-capitulo} o \autoref{thm:teorema})
-\end{itemize}
+Indicamos ahora algunas observaciones triviales de esta definición.
+
+\begin{proposicion} \label{mono}
+    Sea $f: A \longrightarrow B$ un monomorfismo de una categoría $\mathscr{C}$ con un objeto cero $\boldsymbol{0}$. Si $f \circ g = 0_{C,B}$ para un morfismo $g: C \longrightarrow A$, entonces $g = 0_{C,A}$.
+\end{proposicion}
+\begin{proof}
+    Por hipótesis asumimos que $f \circ g = 0_{C,B}$ y $f$ es monomorfismo. 
+    
+    Sea $f: A \longrightarrow B$ y $g: C \longrightarrow A$ un morfismo cualquiera. Por \ref{unicidad-morfismo-cero} existe $0_{C,A}: C \longrightarrow A$, y por \ref{composicion-es-cero} sabemos que $f \circ 0_{C,A} = 0_{C,B} = f \circ g$. Como $f$ es un monomorfismo, necesariamente $g = 0_{C,A}$. 
+\end{proof}
+
+\begin{proposicion} \label{monomorfismo-tiene-nucleo-0}
+    En una categoría con un objeto cero $\boldsymbol{0}$, el núcleo de un monomorfismo $f: A \longrightarrow B$ es el morfismo $\boldsymbol{0} \longrightarrow A$.
+\end{proposicion}
+\begin{proof}
+    Recordemos que el núcleo de $f: A \longrightarrow B$ es $(Ker(f),k)$ que cumple $f \circ k = 0_{A,B} \circ k$. Por \ref{composicion-es-cero} tenemos que $0_{A,B} \circ k = 0_{Ker(f),B} = f \circ k$ y por \ref{mono} aseguramos que $k = 0_{Ker(f),A}$. De esta forma, $k$ factoriza a través de $\boldsymbol{0}$ \begin{tikzcd}
+        Ker(f) \arrow{r}{k} \arrow{d} & A \\
+        \boldsymbol{0} \arrow{ur}
+    \end{tikzcd}
+    por la definición de morfismo cero, luego el objeto cero $\boldsymbol{0}$ cumple con la propiedad universal del equalizer y aseguramos que $Ker(f) = \boldsymbol{0}$.
+\end{proof}
+
+Vamos a ver algunos ejemplos para aclarar las nociones anteriormente presentadas.
+
+\begin{ejemplo}
+    En la categoría \textbf{Grp} de grupos y homomorfismos de grupos, el grupo trivial es un objeto cero y los morfismos cero son precisamente aquellos que llevan cualquier elemento en el elemento cero del grupo.
+
+    Dado un homomorfismo de grupos $f: A \longrightarrow B$, su núcleo, según nuestra definición, es el equalizer de $f$ y el morfismo trivial. Esto es
+
+    \begin{equation}
+        Ker(f) = {a \in A | f(a) = 0} \text{.}
+    \end{equation}
+\end{ejemplo}
+
+Una vez presentados los enunciados que tomaremos de base, procedemos a definir el concepto de categoría abeliana. 
+
+\begin{definicion} [Categoría preaditiva]
+     Una categoría preaditiva es una categoria $\mathscr{C}$ equipada con estructura de grupo en cada conjunto $\mathscr{C}(A,B)$ de forma que la composición de morfismos es bilineal: 
+
+    \begin{equation}
+        f \circ (g + h) = (f \circ g) + (f \circ h) \text{.}
+    \end{equation}
+\end{definicion}
+
+Claramente, que cualquier categoría de modulos sobre un anillo es preaditiva.
+
+Introducimos ahora una noción importante en categorías abelianas.
+
+\begin{definicion}
+    Sean $A$ y $B$ dos objetos en una categoría preaditiva $\mathscr{C}$. Un biproducto de $A$ y $B$ es una quíntupla $(P, p_A, p_B, s_A, s_B)$, donde:
+    \begin{itemize}
+        \item $P$ es un objeto de $\mathscr{C}$,
+        \item $p_A: P \to A$ y $p_B: P \to B$ son morfismos llamados \textbf{proyecciones},
+        \item $s_A: A \to P$ y $s_B: B \to P$ son morfismos llamados \textbf{secciones},
+    \end{itemize}
+    que satisfacen las siguientes identidades:  
+    \begin{equation}
+        p_A \circ s_A = \operatorname{id}_A, \quad 
+        p_B \circ s_B = \operatorname{id}_B, \quad 
+        p_A \circ s_B = 0, \quad 
+        p_B \circ s_A = 0, \quad 
+        s_A \circ p_A + s_B \circ p_B = \operatorname{id}_P.
+    \end{equation}
+    Cuando existe tal estructura, denotamos el biproducto como $A \oplus B$.
+\end{definicion}
+
+
+El biproducto en una categoría preaditiva abstrae la noción de suma directa en contextos algebraicos. La existencia de un biproducto para un par de objetos $A,B$ fuerza a que, si existe el producto de $A,B$, obligatoriamente es también coproducto y viceversa. 
+
+En la categoría de módulos sobre un anillo $\mathbf{Mod}_R$, el biproducto $M \oplus N$ coincide con la suma directa usual de módulos, y en la categoría de grupos abelianos, representa la suma (o producto) directa de grupos. 
+
+Notar que en la categoría \textbf{Grp}, el producto directo no es un coproducto, ya que para cumplir la propiedad universal necesitaría conmutatividad en los grupos.
+
+
+\begin{definicion} [Categoría aditiva]
+    Por categoría aditiva entendemos una categoría preadtivia con objeto cero y biproductos binarios para cada pareja de objetos.
+\end{definicion}
+
+Ya estamos en condiciones de definir el concepto central de esta sección.
+
+\begin{definicion} [Categoría abeliana]
+   Una categoría $\mathscr{C}$ se dice abeliana si se cumplen las siguientes condiciones:
+
+    \begin{enumerate}
+        \item $\mathscr{C}$ es una categoría aditiva;
+        \item Cada morfismo en $\mathscr{C}$ tiene núcleo y conúcleo;
+        \item Cada monomorfismo en $\mathscr{C}$ es un núcleo, y cada epimorfismo en $\mathscr{C}$ es un conúcleo.
+    \end{enumerate}
+\end{definicion}
+
+Ahora que hemos establecido la noción de categoría abeliana, introducimos algunos conceptos adicionales sobre categorías que serán fundamentales para el desarrollo posterior relativo a álgebra homológica. 
+
+\begin{proposicion} \label{proposicion-usual}
+    Para un morfismo $f: A \longrightarrow B$ en una categoría abeliana $\mathscr{C}$, las siguientes condiciones equivalen:
+
+    \begin{enumerate}
+        \item $f$ es un monomorfismo;
+        \item $Ker(f) = 0$
+        \item $\forall C \in \mathscr{C} \quad \forall g: C \longrightarrow A \quad f \circ g = 0 \Rightarrow g = 0$
+    \end{enumerate}
+\end{proposicion}
+\begin{proof}
+    $(1) \Rightarrow (2)$ se probó en \ref{monomorfismo-tiene-nucleo-0} y $(1) \Rightarrow (3)$ se probó en \ref{mono}. 
+    
+    Vamos a probar $(2) \Rightarrow (1)$. Si $Ker(f) = 0$, sean dos morfismos $u,v$ tales que $f \circ u = f \circ v$ y su coequalizer $Coker(u,v) = q$ \footnote{La existencia del coequalizador de u y v no está garantizada en una categoría arbitraria. Sin embargo, en una categoría abeliana, que es completa y cocompleta, existen todos los límites y colímites pequeños. Para una demostración de este resultado, véase Handbook of Categorical Algebra II de Borceux, Capítulo 1, Sección 5, Proposición 1.5.3. Para una discusión general sobre categorías completas y cocompletas, consúltese Handbook of Categorical Algebra I, Capítulo 2, Sección 7.}. Como $q$ es un epimorfismo, $q = Coker(w)$ para algún $w$, por definición de categoría abeliana. Como $f \circ u = f \circ v$, por la propiedad universal del coequalizer $f$ debe factorizar a través de $q$ como $f = m \circ q$. Ya que $q = Coker(w)$ y por tanto $q \circ w = 0$, tenemos $f \circ w = m \circ q \ circ w = m \circ 0$. Esta relación nos dice que necesariamente $w$ de factorizar a través del núcleo de $f$: $w = k \circ n$. Al ser $Ker(f) = 0$ por hipótesis, necesariamente $w = 0$. Luego $q$ es el conúcleo de un morfismo cero, lo que nos indica que necesariamente debe ser la identidad sobre $B$, que a su vez es trivialmente un isomorfismo. Más concretamente, $q = id_B$ es un monomorfismo, y como $q \circ u = q \circ v$, entonces necesariamente $u = v$, probando así que $f$ es un monomorfismo (Ver \ref{diagrama-dificil}).
+
+    Finalmente vamos a probar $(3) \Rightarrow (2)$. Recordemos que $Ker(f)$ es el equalizer del diagrama
+    
+    \begin{tikzcd}
+        \boldsymbol{Ker(f)} \arrow{r}{k} & A \arrow[shift left]{r}{f} \arrow[shift right, swap]{r}{0_{A,B}} & B
+    \end{tikzcd}
+    cumpliendo $f \circ k = 0_{Ker(f),B}$. Por un lado tenemos un candidato en la composición 
+    \begin{tikzcd}
+        \boldsymbol{0} \arrow{r} & A \arrow{r}{f} & B
+    \end{tikzcd}
+    que es el morfismo cero asociado al objeto $B$, que sabemos que es único. Por otro lado si dado un objeto $C \in \mathscr{C}$ cualquiera y la composición
+    \begin{tikzcd}
+        C \arrow{r}{g} & A \arrow{r}{f} & B
+    \end{tikzcd}
+    es el morfismo $0_{C,B}$, por hipótesis en $(3)$ tenemos que $g = 0_{C,A}$. Nos queda entonces el siguiente diagrama
+    \begin{tikzcd}
+        C \arrow{r}{g} \arrow{d} & A \arrow{r}{f} & B \\
+        \boldsymbol{0} \arrow{ur}
+    \end{tikzcd}
+    con $g$ factorizando a través del objeto cero, lo que prueba que dicho objeto cumple con la propiedad universal del equalizer y por tanto $Ker(f) = \boldsymbol{0}$.
+\end{proof}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzcd}
+        Ker(f) \arrow{dr}{k} & \arrow[dotted]{l}[swap]{n} \arrow{d}{w} \bullet \\
+        \bullet \arrow[shift right, swap]{r}{v} \arrow[shift left]{r}{u} & \bullet \arrow{r}{f} \arrow[twoheadrightarrow]{d}{q} & \bullet \\
+        & \bullet \arrow[dotted]{ur}{m}
+    \end{tikzcd}
+    \caption{Diagrama que refleja la situación para \ref{proposicion-usual}}
+    \label{diagrama-dificil}
+\end{figure}
+
+En el siguiente teorema se introduce un concepto conocido en categorías como \textbf{Ab} o $\mathbf{Mod}_R$: el objeto imagen de un morfismo. Aunque su definición puede parecer abstracta y distante de las nociones habituales, veremos que encapsula de manera general el concepto que buscamos.
+
+\begin{teorema} \label{def:imagen}
+    Todo morfismo $f$ en una categoría abeliana puede factorizarse de forma única (salvo isomorfismo) como $f = i \circ p$, donde $i$ es un monomorfismo y $p$ es un epimorfismo. De hecho, $i = Ker(Coker(f))$ y $p=Coker(Ker(f))$.
+\end{teorema}
+\begin{proof}
+    La situación para esta demostración se encuentra reflejada en el diagrama \ref{diagrama-dificil-imagen}. Como $k$ es el morfismo asociado al núcleo de $f$, cumple $f \circ k = 0$. Por otro lado, $(Coker(k),p)$ es el conúcleo del morfismo $k: Ker(f) \longrightarrow A$ por lo que cumple $p \circ k = 0$. Por la propiedad universal del coequalizer se tiene que $f$ debe factorizar $f = i \circ p$ a través de $p$. Vamos a realizar el resto de la demostración por pasos.
+    
+    \begin{enumerate}
+        \item \textbf{i es un monomorfismo}: Para ello, usando \ref{proposicion-usual}, es suficiente con tomar un morfismo $x$ cumpliendo $i \circ x = 0$ y demostrar que entonces $x = 0$. Como $i \circ x = 0$. Consideramos ahora $(Coker(x),q)$ el conúcleo del morfismo $x$ (recordemos que siempre existe debido a que nuestro ambiente es una categoría abeliana que en particular es cocompleta) de forma que al cumplirse $i \circ x = 0$, necesariamente $i$ debe factorizar $i = r \circ q$ a través de $q$ por la propiedad universal del coequalizer. Ahora tenemos que $p$ y $q$ son dos epimorfismos, por lo que la composición $q \circ p$ es también un epimorfismo. De nuevo al estar en una categoría abeliana, si $q \circ p$ es un epimorfismo, necesariamente existe $h$ tal que $q \circ p = Coker(h)$, donde $h$ tiene como codominio el objeto $A$. La relación
+        
+        \begin{equation}
+            f \circ h = i \circ p \circ h = r \circ q \circ p \circ h = r \circ 0 = 0
+        \end{equation}
+
+        y la propiedad universal del equalizer inducen que $h$ debe factorizar $h = k \circ l$  a través de $k$. Finalmente $p \circ h = p \circ k \circ l = 0 \circ l = 0$, pero como $q \circ p = Coker(h)$, $p$ debe factorizar $p = s \circ (q \circ p)$. Como $p$ es un epimorfismo, por definición, si se cumple $p = (s \circ q) \circ p$, entonces $s \circ q = 1$. Luego $q$ es en particular un monomorfismo de donde $q \circ x = 0$ implica que $x = 0$, probando así que $i$ es un monomorfismo.
+        
+        \item \textbf{La factorización de $f$ es única}: Esta parte se prueba usando que los epimorfismos regulares son fuertes \footnote{Consúltese Handbook of Categorical Algebra I, Capítulo 4, Sección 4, Proposición 4.4.5}.
+        
+        Por un argumento de dualidad, $f$ factoriza como $f = i' \circ p'$ con $i' = Ker(Coker(f))$ y $p'$ un epimorfismo. Por unicidad, necesariamente las factorizaciones $f = i \circ p$ y $f = i' \circ p'$ son isomorfas.
+    \end{enumerate}
+\end{proof}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzcd}
+        & \arrow{dl}[swap]{l} \arrow{d}{h} \bullet \\
+        Ker(f) \arrow{r}{k} & A \arrow{r}{f} \arrow{d}{p} & B \\
+        \bullet \arrow{r}{x} & Coker(k) \arrow{ur}{i} \arrow[shift right, swap]{r}{q}& Coker(x) \arrow{u}{r} \arrow[shift right, swap]{l}{s}
+    \end{tikzcd}
+    \caption{Diagrama que refleja la situación para \ref{def:imagen}}
+    \label{diagrama-dificil-imagen}
+\end{figure}
+
+
+\begin{observacion}
+    La factorización de $f$ referida en \ref{def:imagen} se conoce como ``factorización imagen'' de $f$. Los morfismos $i$ y $p$ de la composición tienen por dominio y codominio respectivamente el objeto $Im(f)$. Por tanto $f(A)$ ``es'' el cociente de $A$ por el núcleo de f, i.e. el conúcleo del núcleo de $f$. 
+\end{observacion}
+
+\begin{observacion}
+    Intuitivamente, tiene sentido definir la imagen de un morfismo como el conúcleo de su núcleo. Recordemos que el núcleo de un morfismo mide la parte del dominio que es enviada al morfismo cero, es decir, la información que se "pierde". Por otro lado, el conúcleo nos indica cuánto le falta a un morfismo para ser un epimorfismo. Así, el conúcleo del núcleo de un morfismo proporciona una medida de la parte del dominio que sobrevive tras eliminar la información perdida, capturando de manera abstracta la noción de imagen en términos categóricos.
+\end{observacion}
+
+
+\begin{ejemplo}
+    En el caso de la categoría \textbf{Ab} de grupos abelianos y el homomorfismo de grupos $f: A \longrightarrow B$ tenemos la factorización $Im(f) = f(A)$ donde $p: A \longrightarrow f(A)$ es sobreyectivo y $i: f(A) \hookrightarrow B$ es inyectivo.
+\end{ejemplo}
+
+Vamos ahora a introducir unos objetos que serán centrales en este trabajo por su importancia en el álgebra homológica: las sucesiones exactas.
+
+\begin{definicion} \label{secuencia-exacta}
+    En $\mathscr{C}$ una categoría abeliana, un par de morfismos composables 
+
+    \begin{equation}
+        \begin{tikzcd}
+            A \arrow{r}{f} & B \arrow{r}{g} & C
+        \end{tikzcd}
+    \end{equation}
+
+    forman una \textbf{secuencia exacta}  si la imagen de $f$ coincide con el núcleo de $g$. 
+
+    \begin{equation}
+        \begin{tikzcd}
+            A \arrow{r}{f} \arrow{d}{p} & B \arrow{r}{g} & C \\
+            Im(f) \arrow{ur}{i} & Ker(f) \arrow{u}{k}
+        \end{tikzcd}
+    \end{equation}
+\end{definicion}
+
+\begin{definicion}
+    Por \textbf{secuencia exacta corta} en una categoría abeliana $\mathscr{C}$ entendemos una secuencia exacta de la forma 
+
+    \begin{equation}
+        \begin{tikzcd}
+            \boldsymbol{0} \arrow{r} & A \arrow{r}{f} & B \arrow{r}{g} & C \arrow{r} & \boldsymbol{0}
+        \end{tikzcd}
+    \end{equation}
+\end{definicion}
+
+\begin{definicion}
+    Una secuencia de morfismos
+
+    \begin{equation}
+        \begin{tikzcd}
+            \dots \arrow{r} & A_n \arrow{r}{f_n} & A_{n+1} \arrow{r}{f_{n+1}} & A_{n+2} \arrow{r} & \dots
+        \end{tikzcd}
+    \end{equation}
+
+    es una \textbf{secuencia exacta larga} si cada par de morfismos consecutivos forma una secuencia exacta en el sentido de \ref{secuencia-exacta}.
+\end{definicion}
+
+\begin{lema}[Lema de la Serpiente]
+    Sea la siguiente fila conmutativa de morfismos en una categoría abeliana $\mathscr{C}$, donde las filas son exactas:
+
+    \begin{equation}
+        \begin{tikzcd}
+            & A \arrow{r}{f} \arrow{d}{a} & B \arrow{r}{g} \arrow{d}{b} & C \arrow{r}{} \arrow{d}{c} & \boldsymbol{0} \\
+            \boldsymbol{0} \arrow{r} & A' \arrow{r}{f'} & B' \arrow{r}{g'} & C' &\\
+        \end{tikzcd}
+    \end{equation}
+    
+    Entonces existe una aplicación canónica, llamada \textbf{morfismo de conexión}, que asocia a cada secuencia exacta corta de arriba una secuencia exacta larga:
+
+    \begin{equation}
+        \begin{tikzcd}
+            \ker a' \arrow[r]{r}{} & \ker a \arrow[r]{r}{} & \ker a'' \arrow[r]{r}{\delta} & \operatorname{coker} a' \arrow[r]{r}{} & \operatorname{coker} a \arrow[r]{r}{} & \operatorname{coker} a''.
+        \end{tikzcd}
+    \end{equation}
+    
+\end{lema}
 
 
 
-
-
-\section{Bibliografía e índice}
-
-Esto es un ejemplo de texto en un capítulo. Incluye varias citas tanto a libros~\cite{Aigner2018}, artículos de investigación~\cite{Euler1985}, recursos online~\cite{EulerWiki} (páginas web), tesis~\cite{CitekeyPhdthesis}, trabajo fin de máster~\cite{CitekeyMastersthesis}, trabajo fin de grado~\cite{CiteKeyBachelorsthesis} así como artículos sin publicar (preprints) \cite{castroinfantes2022conjugate} (en estos últimos usar el campo \texttt{note} para añadir la información relevante). 
-
-Ver el fichero \texttt{library.bib} para las distintas plantillas. Cada nueva referencia debe añadirse en dicho fichero siguiendo el estilo del código \texttt{bibtex} según el tipo de referencia (página web, tesis, trabajo fin de grado o máster, artículo de investigación, libro,\ldots). Alternativamente se puede usar la web \href{https://zbib.org}{https://zbib.org} para generar automáticamente el código \texttt{bibtex}.
 
 
 \endinput

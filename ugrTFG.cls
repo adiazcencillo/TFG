@@ -57,7 +57,7 @@
 % Teoremas y entornos asociados
 
   \newtheorem*{teorema*}{Teorema}
-  \newtheorem{teorema}{Teorema}[chapter]
+  \newtheorem{teorema}{Teorema}[section]
   \newtheorem{proposicion}[teorema]{Proposición}
   \newtheorem{lema}[teorema]{Lema}
   \newtheorem{corolario}[teorema]{Corolario}
